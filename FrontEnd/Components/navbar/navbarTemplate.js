@@ -5,15 +5,25 @@ export const NavbarTemplate = (context) => {
 
     return html`
     <style>
+    body {
+      margin: 0;
+      padding: 0;
+      /* Add any other body styles you need */
+    }
+
+    /* Assuming .navbar is the outermost container of your navbar */
     .navbar {
-      width: 100%;
-      color: white;
+      width: 100vw; /* Viewport width, ensures it stretches to the full width of the viewport */
+      height: 70px; /* Adjust the height as needed */
       background-color: rgb(6, 28, 113);
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 70px; /* Adjust the height as needed */
+      position: absolute; /* Position it absolutely relative to the viewport */
+      top: 0; /* Align to the top */
+      left: 0; /* Align to the left */
     }
+
 
     .navbar-title {
       font-size: 24px;
@@ -62,7 +72,7 @@ export const NavbarTemplate = (context) => {
        height:150px;
       }
     </style> 
-      <div style="display: flex; justify-content: center;"> 
+      
       <div class="navbar">
       <img src="/Assets/logo.png" class="logo" alt="Logo">
       <!-- <button class="button" @click=${(e) => context.routeToAbout(e)}>About Us</button> -->
@@ -81,6 +91,6 @@ export const NavbarTemplate = (context) => {
       
       : html``}
       </div>
-      </div>
+      
     `;
 }

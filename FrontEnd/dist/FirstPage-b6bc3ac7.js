@@ -1,13 +1,4 @@
-import { html } from 'lit';
-import { InputString } from '../../Components/input-string/input-string';
-import { InputPassword } from '../../Components/input-password/input-password';
-import { Navbar } from '../../Components/navbar/navbar';
-import { Infobox } from '../../Components/infobox/infobox'
-import { Privacy } from '../privacy/privacy';
-
-export const FirstPageTemplate = (context) => {
-
-  return html`
+import{x as e,s as t}from"./navbar-ab6020c8.js";import{R as i}from"./router-c386902e.js";import"./input-string-9fa8cb8d.js";import"./infobox-53c95629.js";import"./privacy-4f1cac3d.js";import{a as r}from"./config-f8454f4c.js";import"./popup-376611d2.js";customElements.define("first-page",class extends t{render(){return e`
     <style>
     body {
       font-family: Arial, sans-serif;
@@ -104,7 +95,7 @@ export const FirstPageTemplate = (context) => {
       margin-right: 5px;
   }
 </style>
-    ${context.studentCheckBoxClicked ? html`<style>
+    ${(t=this).studentCheckBoxClicked?e`<style>
     .inputText {
       flex: 1;
       border-radius: 5px;
@@ -339,18 +330,18 @@ export const FirstPageTemplate = (context) => {
           margin-left: 5px;
           color:rgb(6, 28, 113);
             ">
-          ${context.error ? html`${context.error}` : html``}
+          ${t.error?e`${t.error}`:e``}
           </div>
           <div class="button-container">
-            <button class="button" style="" @click=${(e) => context.studentuncheckBox(e)}>
+            <button class="button" style="" @click=${e=>t.studentuncheckBox(e)}>
               Back
             </button>
             <div class="privacy-policy-checkbox">
-              <input type="checkbox" id="privacy-policy-checkbox" @change=${(e) => context.handleCheckboxChange(e)}>
-              <label for="privacy-policy-checkbox">I have read and agree to the <button class="privacy-policy-link" @click=${(e) => context.routeToPrivacy(e)}>Privacy Policy</button></label>
+              <input type="checkbox" id="privacy-policy-checkbox" @change=${e=>t.handleCheckboxChange(e)}>
+              <label for="privacy-policy-checkbox">I have read and agree to the <button class="privacy-policy-link" @click=${e=>t.routeToPrivacy(e)}>Privacy Policy</button></label>
             </div>
             <div>
-              <button class="button" style="${context.privacyCheckBoxClicked ? '' : 'pointer-events: none; background-color: gray;'}" @click=${(e) => context.routeToHome(e)}>
+              <button class="button" style="${t.privacyCheckBoxClicked?"":"pointer-events: none; background-color: gray;"}" @click=${e=>t.routeToHome(e)}>
                 Continue
               </button>
             </div>
@@ -359,14 +350,13 @@ export const FirstPageTemplate = (context) => {
       </div>
     </div>
     </div>
- ` :
-      html`
+ `:e`
   
     <div style="display: flex; justify-content: center; width: 100vw;">
     <div class="container">
       <!-- Promotional Section -->
       <div class="promo-section">
-        ${!context.studentCheckBoxClicked ? html`<info-box></info-box>` : html``}
+        ${t.studentCheckBoxClicked?e``:e`<info-box></info-box>`}
       </div>
       <div class="login-section" >
         <div style="
@@ -386,7 +376,7 @@ export const FirstPageTemplate = (context) => {
             placeholder="Password"
              type="Password">
           </input-password>
-           ${context.error ? html`${context.error}` : html``}
+           ${t.error?e`${t.error}`:e``}
            
           <button class="button" id="myButton" style=
           "width: 98.5%;
@@ -397,7 +387,7 @@ export const FirstPageTemplate = (context) => {
             margin-top: 30px;
             font-size: 15px;
             padding-bottom: 10px;"
-          @click=${(e) => context.memberLogin(e)}
+          @click=${e=>t.memberLogin(e)}
           >Ready</button>
           <button id="myButton" style=
            "background-color: rgba(250,235,240,255);
@@ -414,7 +404,7 @@ export const FirstPageTemplate = (context) => {
             padding-bottom: 10px;
             margin-bottom:20px;
             "
-          @click=${(e) => context.studentcheckBox(e)}
+          @click=${e=>t.studentcheckBox(e)}
           >
           Don't have an account? Sign up</button>
         </div>
@@ -423,43 +413,4 @@ export const FirstPageTemplate = (context) => {
     </div>
 
 `}
-    `;
-}
-
-function buildPreviousEmployment() {
-  console.log("here");
-  return html`<div class="row">
-    <div class="input-component">
-      <input-string
-      width=250
-      placeholder="Position"
-      type="Position"
-      >
-      </input-string>
-    </div>
-    <div class="input-component">
-          <input-string
-          width=250
-          placeholder="Company"
-          type="Company"
-          >
-          </input-string>
-    </div>
-    <div class="input-component">
-      <input-string
-      width=250
-      placeholder="Start Date"
-      type="Start Date"
-      >
-      </input-string>
-    </div>
-    <div class="input-component">
-      <input-string
-      width=250
-      placeholder="End Date"
-      type="End Date"
-      >
-      </input-string>
-    </div>
-</div>`
-}
+    `;var t}static get properties(){return{ButtonClicked:{Type:Boolean},studentCheckBoxClicked:{Type:Boolean},privacyCheckBoxClicked:{Type:Boolean},employeeCheckBoxClicked:{Type:Boolean},error:{Type:String},employmentButton:{Type:String}}}constructor(){super(),this.ButtonClicked=!1,this.studentCheckBoxClicked=!1,this.privacyCheckBoxClicked=!1,this.employeeCheckBoxClicked=!1,this.error=null,this.UserAttributes={FirstName:"",LastName:"",email:"",school:"",gpa:"",year:"",Password:"",province:"",city:"",events:[],experience:[],skills:[]},sessionStorage.clear(),this.users="",this.currentUser=[],this.inputtedPassword=null,this.employmentButton=!1,this.validCrendentials=!1,this.pageHeight=0,this.addEventListener("custom-string-event",this.handleChangedValue)}connectedCallback(){super.connectedCallback(),this.pageHeight=document.documentElement.scrollHeight}handleChangedValue(e){switch(e.stopPropagation(),e.detail.type){case"Email":this.userEmailLogin(e.detail.value,null);break;case"Password":this.inputtedPassword=e.detail.value,this.UserAttributes.Password=e.detail.value;break;case"Confirm Password":if(e.detail.value!==this.UserAttributes.Password)return void(this.error="Passwords do not match");this.error=null;break;case"Age":this.validateAge(e.detail.value,e.detail.type);break;case"email":this.validateEmail(e.detail.value,e.detail.type);break;case"year":this.validateYearsCompleted(e.detail.value,e.detail.type);break;case"Phone Number":this.validatePhoneNumber(e.detail.value,e.detail.type);break;case"gpa":this.validateGPA(e.detail.value,e.detail.type);break;default:return void this.validateString(e.detail.value,e.detail.type)}}studentcheckBox(e){this.studentCheckBoxClicked=!0,this.error=null,this.currentUser=null,this.inputtedPassword=null}handleCheckboxChange(e){this.privacyCheckBoxClicked=!this.privacyCheckBoxClicked}studentuncheckBox(e){this.studentCheckBoxClicked=!1,this.error=null,this.currentUser=null,this.inputtedPassword=null}areAllFieldsFilled(e){for(const t in e)if(e.hasOwnProperty(t)){const i=e[t];if(Array.isArray(i))continue;if("string"==typeof i&&""===i.trim())return!1}return!0}convertValuesToLowerCaseJson(e){for(let t=0;t<e.length;t++){const i=e[t];for(const e in i)i.hasOwnProperty(e)&&"string"==typeof i[e]&&(i[e]=i[e].toLowerCase())}return e}convertAllCharsToLowerCase(e){if("string"==typeof e)return e.toLowerCase()}routeToHome(e){this.areAllFieldsFilled(this.UserAttributes)?(this.error=null,this.UserAttributes.Name=this.UserAttributes.FirstName+" "+this.UserAttributes.LastName,this.UserAttributes.aboutMe="",console.log(this.UserAttributes),this.addUser(this.UserAttributes)):this.error="Invalid Sign up credentials"}memberLogin(e){this.currentUser?this.inputtedPassword?this.currentUser.Password!==this.inputtedPassword?this.error="Incorrect password or email":(sessionStorage.setItem("email",this.currentUser.email),sessionStorage.setItem("role","user"),i.go("/home")):this.error="Please Enter Password":this.error="Please Enter valid Email Address"}validateEmail(e,t){if(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(e)){if(!t)return!0;this.error=null,this.UserAttributes[t]=this.convertAllCharsToLowerCase(e)}else{if(!t)return!1;this.error="Invalid Email"}}userEmailLogin(e,t){fetch(`${r}/api?username=${e}`).then((e=>e.json())).then((t=>{this.currentUser.Password=t.Password,this.currentUser.Name=t.Name,this.currentUser.email=e})).catch((e=>{this.error="User Not Found"})),this.validateEmail(e,t)?this.currentUser.email=e:this.error="Invalid Email"}userEmailPassword(e){this.currentUser||(this.error="Please enter an email address")}validateAge(e,t){e>=15&&e<=100?(this.error=null,this.UserAttributes[t]=String(e)):this.error="Please Enter a Valid Age"}validateGPA(e,t){e>=1.5&&e<=4.3?(this.error=null,this.UserAttributes[t]=String(e)):this.error="Please Enter a Valid Age"}validateString(e,t){/^[a-zA-Z \p{P}]*$/u.test(e)?(this.error=null,this.UserAttributes[t]=e):this.error="Invalid Input"}validateYearsCompleted(e,t){e>=0&&e<=4?(this.error=null,this.UserAttributes[t]=String(e)):this.error="Invalid Input"}validatePhoneNumber(e,t){/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/.test(e)?(this.error=null,this.UserAttributes[t]=String(e)):this.error="Invalid Input"}addUser(e){fetch(`${r}/api/users`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(e)}).then((e=>e.json())).then((e=>{"Account exists under this email"===e.message?this.error="Account exists under this email":(sessionStorage.setItem("email",this.UserAttributes.email),sessionStorage.setItem("role","user"),i.go("/home"))})).catch((e=>{console.error("Error adding user:",e)}))}routeToPrivacy(e){i.go("/privacy")}});

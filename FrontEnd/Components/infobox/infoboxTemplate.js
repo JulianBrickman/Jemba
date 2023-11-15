@@ -65,7 +65,7 @@ export const infoboxTemplate = (context) => {
       }
     </style>
     <div class="box">
-      <p class="description">Need a Job? Showcase your skills in hackathon style competition, WIN BIG PRIZES. </p>
+      <p class="description">Showcase Your Skills. <br/> Fast-Track Your Career.</p>
       <div class="features">
         <div class="feature">
         <img src="/Assets/CompetitionB.png" class="icon" alt="Logo">
