@@ -22,7 +22,6 @@ export const FirstPageTemplate = (context) => {
 
     .container {
       background-color: #fff;
-      height: ${context.pageHeight}px;
       display: flex;
       align-items:center;
       justify-content: center;
@@ -364,7 +363,7 @@ export const FirstPageTemplate = (context) => {
  ` :
       html`
   
-  <body>
+    <div style="display: flex; justify-content: center; width: 100vw;">
     <div class="container">
       <!-- Promotional Section -->
       <div class="promo-section">
@@ -426,4 +425,42 @@ export const FirstPageTemplate = (context) => {
 
 `}
     `;
+}
+
+function buildPreviousEmployment() {
+  console.log("here");
+  return html`<div class="row">
+    <div class="input-component">
+      <input-string
+      width=250
+      placeholder="Position"
+      type="Position"
+      >
+      </input-string>
+    </div>
+    <div class="input-component">
+          <input-string
+          width=250
+          placeholder="Company"
+          type="Company"
+          >
+          </input-string>
+    </div>
+    <div class="input-component">
+      <input-string
+      width=250
+      placeholder="Start Date"
+      type="Start Date"
+      >
+      </input-string>
+    </div>
+    <div class="input-component">
+      <input-string
+      width=250
+      placeholder="End Date"
+      type="End Date"
+      >
+      </input-string>
+    </div>
+</div>`
 }
