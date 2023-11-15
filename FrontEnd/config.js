@@ -1,1 +1,1 @@
-export const apiUrl = 'http://blinq.co:5001';
+export const apiUrl = 'http://blinq.co/api';
