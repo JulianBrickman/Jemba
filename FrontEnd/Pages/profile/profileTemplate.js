@@ -21,8 +21,10 @@ const openPopup = (e, eventData) => {
       .container {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        height: 100vh; /* This ensures the container takes up the full viewport height */
+        align-items: center; /* Centers horizontally in a column flex container */
+       
+        height: 100vh; /* Full viewport height */
+        
       }
       .container-popup {
         width: 50%;
@@ -97,13 +99,13 @@ const openPopup = (e, eventData) => {
       }
 
       .profile-box {
-        
+        width: 80%; /* Adjust the width as needed */
+        margin: 0 auto; /* Centering horizontally */
         background-color: white;
-        width: 90%;
         border-radius: 5px;
         box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.3);
         padding: 1%;
-        margin-top: 80px;
+        margin-top: 50px;
         border-radius:10px;
         position: relative;
         
@@ -122,7 +124,7 @@ const openPopup = (e, eventData) => {
 
       .experience-box {
         background-color: white;
-        width: 90%;
+        width: 80%;
         border-radius: 5px;
         box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.3);
         padding: 1%;

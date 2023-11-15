@@ -95,6 +95,16 @@ export function initRouter() {
         });
       }
     },
+    {
+      path: "/about", // Use a parameter to identify the user
+      component: "about-page", 
+      action: () => import("./Pages/about/aboutPage")
+    },
+    {
+      path: "/privacy", // Use a parameter to identify the user
+      component: "privacy-page", 
+      action: () => import("./Pages/privacy/privacy")
+    },
   ]);
 }
 

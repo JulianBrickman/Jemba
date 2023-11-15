@@ -20,7 +20,7 @@ export const MyEventsTemplate = (context) => {
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-top:10%;
+      margin-top: 50px;
     }
    .event-section {
         background-color: white; /* Set the background color to white */

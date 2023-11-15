@@ -55,7 +55,7 @@ export class Navbar extends LitElement {
         triggerReload() {
               this.triggerRerender+=1;
                 var currentURL = window.location.href;
-                if (currentURL === ("http://localhost:8000/" ||"http://localhost:8000/enterpriseLogin") ) {
+                if (currentURL === ("http://localhost:8000/" ||"http://localhost:8000/enterpriseLogin" ||"http://localhost:8000/about") ) {
                     this.inMainApplication = false;
                 } else {
                     this.inMainApplication = true;
@@ -92,6 +92,10 @@ export class Navbar extends LitElement {
 
         routeToJobPosting(e) {
             Router.go("/createjobposting");
+        }
+        routeToAbout() {
+            var currentURL = window.location.href;
+            Router.go("/about");
         }
 }
 

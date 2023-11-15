@@ -29,7 +29,7 @@ export const HomePageTemplate = (context) => {
         padding: 20px;
         max-width: 90%; /* Set maximum width for the section */
         margin: 0 auto; /* Center the section horizontally */
-        margin-top: 105px;
+        margin-top: 50px;
         
     }
     
