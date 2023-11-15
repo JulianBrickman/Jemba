@@ -39,7 +39,7 @@ export class Navbar extends LitElement {
 
             // This is very bad code, need to refactor later on
             var currentURL = window.location.href;
-            if (currentURL === "http://localhost:8000/") {
+            if (currentURL === "http://blinq.co") {
                 this.inMainApplication = false;
             } else {
                 this.inMainApplication = true;
@@ -55,7 +55,7 @@ export class Navbar extends LitElement {
         triggerReload() {
               this.triggerRerender+=1;
                 var currentURL = window.location.href;
-                if (currentURL === ("http://localhost:8000/" ||"http://localhost:8000/enterpriseLogin" ||"http://localhost:8000/about") ) {
+                if (currentURL === ("http://blinq.co" ||"http://blinq.co/enterpriseLogin" ||"http://blinq.co/about") ) {
                     this.inMainApplication = false;
                 } else {
                     this.inMainApplication = true;
