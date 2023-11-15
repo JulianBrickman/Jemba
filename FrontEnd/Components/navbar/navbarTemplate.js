@@ -65,9 +65,9 @@ export const NavbarTemplate = (context) => {
       <div style="display: flex; justify-content: center;"> 
       <div class="navbar">
       <img src="/Assets/logo.png" class="logo" alt="Logo">
-      <button class="button" @click=${(e) => context.routeToAbout(e)}>About Us</button>
+      <!-- <button class="button" @click=${(e) => context.routeToAbout(e)}>About Us</button> -->
       ${context.inMainApplication ? html` 
-      <button class="button" @click=${(e) => context.routeToFirst(e)}>Landing Page</button>
+      <!-- <button class="button" @click=${(e) => context.routeToFirst(e)}>Landing Page</button> -->
       <button class="button" @click=${(e) => context.routeToHome(e)}>Home</button>
       ${context.entrepriseMode ? html`
       <button class="button" @click=${(e) => context.routeToJobPosting(e)}>Create Posting</button>
