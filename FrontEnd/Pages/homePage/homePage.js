@@ -140,7 +140,7 @@ export class HomePage extends LitElement {
         }
 
         async addEventToUser(userId, eventId) {
-            eventId["submittions"] = [];
+            eventId["submissions"] = [];
             try {
               const response = await fetch(`${apiUrl}/user/addEvent/${userId}`, {
                 method: 'POST',

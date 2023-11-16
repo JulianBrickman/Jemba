@@ -1,20 +1,4 @@
-import { html } from 'lit';
-import { EventCard } from '../../Components/eventCard/eventCard';
-import { Navbar } from '../../Components/navbar/navbar';
-
-export const MyEventsTemplate = (context) => {
-  const handleBackgroundClick = (e) => {
-    if (e.target.classList.contains('popup')) {
-      context.closePopup();
-    }
-  };
-
-  const openPopup = (e, eventData) => {
-    context.setPopupData(eventData);
-    context.togglePopup(e);
-  };
-
-  return html`
+import{x as t,s as e,a as o}from"./navbar-c31eae7a.js";import"./eventCard-b497fa1d.js";import"./router-a765931a.js";class i extends e{render(){return(e=>{const o=(t,o)=>{e.setPopupData(o),e.togglePopup(t)};return t`
     <style>
     .container {
       display: flex;
@@ -140,7 +124,7 @@ export const MyEventsTemplate = (context) => {
       }
     </style>
     <div class="container">
-  ${context.eventData.length > 0 ? html`
+  ${e.eventData.length>0?t`
   <div style=" background-color: white;
         width: 90%;
         border-radius: 5px;
@@ -152,22 +136,22 @@ export const MyEventsTemplate = (context) => {
         <h1 style="border-bottom: lightgray; color:rgb(6, 28, 113);
         border-bottom-style: solid; padding-top:10px;">Live Events</h1>
       <div class="event-grid">
-        ${context.eventData.map(event => html`
-          <button class="card-button" @click=${(e) => openPopup(e, event)}>
+        ${e.eventData.map((e=>t`
+          <button class="card-button" @click=${t=>o(t,e)}>
             <event-card
-              title=${event.title}
-              description=${event.shortdescription}
-              img=${event.img}
+              title=${e.title}
+              description=${e.shortdescription}
+              img=${e.img}
               placeholder=""
             ></event-card>
           </button>
-        `)}
+        `))}
       </div>
-      </div>`: html`<section class="event-section"><h3 style=" text-align: center;
+      </div>`:t`<section class="event-section"><h3 style=" text-align: center;
   border-bottom-style: none; 
   margin-bottom:2px;
   color: rgb(6, 28, 113); ">No live events, Check the home page to enroll in an event!</h3></section>`}
-   ${context.submittedEvents.length > 0 ? html`
+   ${e.submittedEvents.length>0?t`
    </div>
         <div style=" background-color: white;
         width: 90%;
@@ -180,36 +164,36 @@ export const MyEventsTemplate = (context) => {
         <h1 style="border-bottom: lightgray; color:rgb(6, 28, 113);
         border-bottom-style: solid; padding-top:10px;">Submitted</h1>
       <div class="event-grid">
-        ${context.submittedEvents.map(event => html`
-          <button class="card-button" @click=${(e) => openPopup(e, event)}>
+        ${e.submittedEvents.map((e=>t`
+          <button class="card-button" @click=${t=>o(t,e)}>
             <event-card
-              title=${event.title}
-              description=${event.shortdescription}
-              img=${event.img}
+              title=${e.title}
+              description=${e.shortdescription}
+              img=${e.img}
               placeholder=""
             ></event-card>
           </button>
-        `)}
+        `))}
       </div>
-      </div>`: html`<section class="event-section"><h3 style=" text-align: center;
+      </div>`:t`<section class="event-section"><h3 style=" text-align: center;
   
   color: rgb(6, 28, 113);">No live events, Check home page to enroll in an event!</h3></section>`}
 
     
 
 
-    ${context.popupOpen ? html`
-    <div class="popup" @focusout=${handleBackgroundClick}>
+    ${e.popupOpen?t`
+    <div class="popup" @focusout=${t=>{t.target.classList.contains("popup")&&e.closePopup()}}>
     <body>
     <div class="container-popup">
-    <button class="close-button" @click=${(e) => context.closePopup(e, context.popupData.id)} >X</button>
+    <button class="close-button" @click=${t=>e.closePopup(t,e.popupData.id)} >X</button>
         <h2 style="border-bottom: lightgray; color:rgb(6, 28, 113);
-        border-bottom-style: solid; margin-bottom:2px;margin-top: 10px">${context.popupData.eventTitle}</h2>
-        <p>${context.popupData.eventDescription}</p>
-        <p>${context.popupData.eventStartDate} - ${context.popupData.eventEndDate}</p>
+        border-bottom-style: solid; margin-bottom:2px;margin-top: 10px">${e.popupData.eventTitle}</h2>
+        <p>${e.popupData.eventDescription}</p>
+        <p>${e.popupData.eventStartDate} - ${e.popupData.eventEndDate}</p>
         <h2 style="border-bottom: lightgray; color:rgb(6, 28, 113);
-        border-bottom-style: solid; margin-bottom:2px;margin-top: 30px">${context.popupData.companyName} Company Information</h2>
-        <p>${context.popupData.longdescription}</p>
+        border-bottom-style: solid; margin-bottom:2px;margin-top: 30px">${e.popupData.companyName} Company Information</h2>
+        <p>${e.popupData.longdescription}</p>
       </body>
       <h3 style="
       text-align: center;
@@ -217,23 +201,21 @@ export const MyEventsTemplate = (context) => {
       margin-bottom:2px;
       color: rgb(6, 28, 113);
       margin-top: 0px">Attachments and Dowloads</h3>
-          <button class="submit-button" @click=${(e) => context.fileSubmissionButton(e)}>Add Submission</button>
-          ${context.filePopup ? html`
+          <button class="submit-button" @click=${t=>e.fileSubmissionButton(t)}>Add Submission</button>
+          ${e.filePopup?t`
           <form 
           style="position: relative;
           top: 54px;" action="/upload" method="POST" enctype="multipart/form-data">
           <input  type="file" name="fileToUpload" id="fileToUpload">
-          <input  type="submit" value="Upload File" @click=${(e) => context.fileSubmission(e, context.popupData.id)}>
-        </form>`:
-        html``}
-        ${context.succesfullyUploaded !== null ? html`<h2 style="
+          <input  type="submit" value="Upload File" @click=${t=>e.fileSubmission(t,e.popupData.id)}>
+        </form>`:t``}
+        ${null!==e.succesfullyUploaded?t`<h2 style="
           height:18.5px;
           margin-left: 5px;
           position: relative;
           top: 300px;
-          color:rgb(6, 28, 113);">${context.succesfullyUploaded}</h2>`
-        : html``}
-        ${context.submittedEvents.some(event => event.id === context.popupData.id) ? html`
+          color:rgb(6, 28, 113);">${e.succesfullyUploaded}</h2>`:t``}
+        ${e.submittedEvents.some((t=>t.id===e.popupData.id))?t`
         <div style="position: relative;
         top: 230px;">
           <h1 id="fileLinksContainer" style="
@@ -245,15 +227,13 @@ export const MyEventsTemplate = (context) => {
             margin-top: 0px;
            ">Submissions
           </h1>
-          <div>${context.filesToDisplay.find(item => item.id === context.popupData.id).link}</div>
+          <div>${e.filesToDisplay.find((t=>t.id===e.popupData.id)).link}</div>
         </div>
         
-        `: html``}
+        `:t``}
         </div>
       </div>
       </div>
       
-      `: html``}
-  `;
-
-};
+      `:t``}
+  `})(this)}static get properties(){return{popupOpen:{type:Boolean},eventData:{type:Object},user:{type:Object},filePopup:{type:Boolean},succesfullyUploaded:{type:String},submittedEvents:{type:Object},filesToDisplay:{type:Array}}}constructor(){super(),this.popupData={},this.popupOpen=!1,this.previouslyLoaded=!1,this.eventData=[],this.submittedEvents=[],this.currentUser={email:sessionStorage.getItem("email")},this.user="",this.filePopup=!1,this.succesfullyUploaded=null,this.filesToDisplay=[]}connectedCallback(){super.connectedCallback(),0===this.eventData.length&&this.fetchUserData()}fetchUserData(){0===this.eventData.length&&fetch(`${o}/api/home/?username=${this.currentUser.email}`).then((t=>t.json())).then((t=>{this.currentUser.events=t.events,this.eventData=this.currentUser.events.filter((t=>0===t.submissions.length||(this.submittedEvents.push(t),!1)));for(const t in this.submittedEvents)this.displayFile(this.submittedEvents[t].submissions[0],this.submittedEvents[t].id)})).catch((t=>{this.error="User Not Found"}))}togglePopup(t){this.popupOpen=!this.popupOpen}closePopup(t,e){"Submission Sucessful"===this.succesfullyUploaded&&(this.eventData=this.eventData.filter((t=>t.id!==e||(this.submittedEvents.push(t),!1)))),this.succesfullyUploaded=null,this.filePopup=!1,this.popupOpen=!1}setPopupData(t){this.popupData=t}fileSubmissionButton(t){this.filePopup=!0}async fileSubmission(t,e){t.preventDefault();const i=this.shadowRoot.querySelector("#fileToUpload").files[0];console.log(i);const n=window.URL.createObjectURL(i),s=document.createElement("a");if(s.href=n,s.target="_blank",s.textContent=String(i.name),s.setAttribute("download",i.name),console.log(i),this.filesToDisplay.push({link:s,id:e}),i){const t=new FormData;t.append("userId",String(this.currentUser.email)),t.append("eventId",String(e)),t.append("fileToUpload",i),fetch(`${o}/user/addSubmission/${this.currentUser.email}`,{method:"POST",body:t}).then((t=>t.json())).then((t=>{this.succesfullyUploaded="Submission Sucessful"})).catch((t=>{this.succesfullyUploaded="Application Error",console.error("Error:",t)}))}}displayFile(t,e){console.log(t.filename);const i=String(this.currentUser.email+e);fetch(`${o}/api/files/${i}/${t.filename}`).then((t=>{if(!t.ok)throw new Error("Network response was not ok");return t.blob()})).then((o=>{const i=window.URL.createObjectURL(o),n=document.createElement("a");n.href=i,n.target="_blank",n.textContent=String(t.filename),n.setAttribute("download",t.filename),this.filesToDisplay.push({link:n,id:e})})).catch((t=>{console.error("Error fetching data:",t)}))}}customElements.define("my-events",i);export{i as MyEventsPage};

@@ -132,7 +132,6 @@ export const HomePageTemplate = (context) => {
           cursor: pointer;
           border-radius: 10px;
           box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-          position: absolute;
           left: 10%%;
       }
     </style>
@@ -179,12 +178,12 @@ export const HomePageTemplate = (context) => {
       margin-bottom:2px;
       color: rgb(6, 28, 113);
       margin-top: 0px">Attachments and Dowloads</h3>
-          ${context.succesfullyEnrolled !==null ? html`<h2 style="
-          height:18.5px;
+          ${context.succesfullyEnrolled !==null ? html`<h3 style="
+          
           margin-left: 5px;
           position: relative;
-          top: 300px;
-          color:rgb(6, 28, 113);">${context.succesfullyEnrolled}</h2>`
+          
+          color:rgb(6, 28, 113);">${context.succesfullyEnrolled}</h3>`
           :html`<button class="enroll-button" @click=${(e) => context.handleEnroll(e,context.popupData)}>Enroll</button>`}
         </div>
       </div>`
