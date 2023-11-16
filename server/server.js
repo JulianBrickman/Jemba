@@ -408,14 +408,16 @@ app.get("/api/currentUser", (req,res) => {
 app.get("/api/fullUserList", (req,res) => {
   res.json({userlist})
 })
-/*
+
 const port = process.env.PORT || 3000;
 app.listen(port, '0.0.0.0', () => {
   console.log(`Server running on port ${port}`);
 });
-*/
+
+/*
 const server = https.createServer(options, app);
 
 server.listen(5001,'0.0.0.0', () => {
   console.log('Server is running on HTTPS port 5001');
 });
+*/
