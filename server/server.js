@@ -11,7 +11,11 @@ const path = require('path');
 app.use(bodyParser.json());
 
 app.use(cors({ origin: process.env.CORS_ORIGIN }));
+<<<<<<< Updated upstream
 console.log(process.env.CORS_ORIGIN);
+=======
+console.log(process.env.CORS_ORIGIN)
+>>>>>>> Stashed changes
 
 app.use(express.urlencoded({ extended: true }));
 

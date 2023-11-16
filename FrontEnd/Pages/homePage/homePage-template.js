@@ -29,7 +29,7 @@ export const HomePageTemplate = (context) => {
         padding: 20px;
         max-width: 90%; /* Set maximum width for the section */
         margin: 0 auto; /* Center the section horizontally */
-        margin-top: 50px;
+        margin-top:100px;
         
     }
     
@@ -72,6 +72,7 @@ export const HomePageTemplate = (context) => {
         font-family: Arial, sans-serif;
         background-color: #f5f5f5;
         padding: 20px;
+        
       }
 
       .popup {

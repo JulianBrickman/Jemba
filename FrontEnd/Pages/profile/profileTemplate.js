@@ -71,11 +71,13 @@ const openPopup = (e, eventData) => {
       .card-button {
         color: black;
         background-color: white;
+        width: 100%;
         display: inline-block;
         cursor: pointer;
-        border: none; /* Remove the border */
-        padding: 0; /* Remove padding */
-        margin-bottom: 10px;
+        border: none;
+        padding: none;
+        margin: none;
+        transition: 0.3s; /* Add transition for smooth hover effect */
       }
       .close-button{
         background-color: red;
@@ -105,7 +107,7 @@ const openPopup = (e, eventData) => {
         border-radius: 5px;
         box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.3);
         padding: 1%;
-        margin-top: 50px;
+        margin-top: 100px;
         border-radius:10px;
         position: relative;
         
@@ -114,14 +116,13 @@ const openPopup = (e, eventData) => {
         display: flex;
         justify-content: space-between; /* Space elements evenly */
       }
+      
       .event-grid {
         display: flex; /* Use flexbox to create a flex container */
         overflow-x: auto; /* Enable horizontal scrolling */
         width: 95%; /* Set the width of the container */
-        margin-top: 10px;
         padding: 1%;
-      }
-
+    }
       .experience-box {
         background-color: white;
         width: 80%;
