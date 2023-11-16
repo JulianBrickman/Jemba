@@ -194,8 +194,7 @@ class FirstPage extends LitElement {
     }
 
     userEmailLogin(input,type) {
-        //fetch(`${apiUrl}/api?username=${input}`)
-        fetch(`https://blinq.co/api?username=${input}`)
+        fetch(`${apiUrl}/api?username=${input}`)
         .then(response => response.json())
         .then(data => {
           // Log the response from the API
