@@ -194,6 +194,7 @@ class FirstPage extends LitElement {
     }
 
     userEmailLogin(input,type) {
+        /*
         fetch(`${apiUrl}/api?username=${input}`)
         .then(response => response.json())
         .then(data => {
@@ -210,6 +211,22 @@ class FirstPage extends LitElement {
         } else {
             this.error = "Invalid Email";
         }
+        */
+        fetch(`${apiUrl}/api/hello`) // Make a GET request to /api/hello
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json(); // Parse the JSON response
+        })
+        .then((data) => {
+          // Display the API response on the page
+          document.getElementById('response').innerHTML = JSON.stringify(data, null, 2);
+        })
+        .catch((error) => {
+          // Handle any errors that occur during the request
+          document.getElementById('response').innerHTML = 'Error: ' + error.message;
+        });
     }
 
     userEmailPassword(input) {

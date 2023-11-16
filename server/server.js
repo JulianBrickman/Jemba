@@ -116,6 +116,10 @@ app.post('/upload', upload.single('fileToUpload'), (req, res) => {
   res.status(200).send('File uploaded successfully!');
 });
 
+app.get('/api/hello', (req, res) => {
+  res.json({ message: 'Hello, this is a simple API!' });
+});
+
 //Get files
 app.get('/api/files/:userId/:filename', (req, res) => {
   const userId = req.params.userId; // Get the user ID from the URL parameters
