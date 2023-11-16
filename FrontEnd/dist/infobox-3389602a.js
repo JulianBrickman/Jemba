@@ -1,4 +1,4 @@
-import{x as e,s as t}from"./navbar-2b39cb70.js";import"./popup-1da87fad.js";customElements.define("input-password",class extends t{render(){return e`
+import{x as e,s as t}from"./navbar-782a9b76.js";import"./popup-734f2b1a.js";customElements.define("input-password",class extends t{render(){return e`
     <style>
     .inputText {
         border-radius: 5px;
