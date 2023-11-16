@@ -1,4 +1,5 @@
 require('dotenv').config();
+const https = require('https');
 const express = require('express');
 const app = express();
 const cors = require('cors');
@@ -7,7 +8,8 @@ const multer = require('multer');
 const nodemailer = require('nodemailer');
 const fs = require('fs');
 const path = require('path');
-
+const fullPath = path.join(__dirname, 'fullchain.pem');
+const fullPathPriv = path.join(__dirname, 'privkey.pem');
 app.use(bodyParser.json());
 
 app.use(cors({ origin: process.env.CORS_ORIGIN }));
@@ -19,8 +21,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 const options = {
-  key: fs.readFileSync('/etc/letsencrypt/live/blinq.co/privatekey.pem'),
-  cert: fs.readFileSync('/etc/letsencrypt/live/blinq.co/fullchain.pem'),
+  key: fs.readFileSync(fullPathPriv),
+  cert: fs.readFileSync(fullPath),
 };
 const mongoose = require('mongoose');
 
