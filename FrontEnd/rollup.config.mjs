@@ -3,6 +3,7 @@ import html from "@rollup/plugin-html";
 import { terser } from "rollup-plugin-terser";
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import serve from 'rollup-plugin-serve';
+import copy from 'rollup-plugin-copy';
 
 
 const template = ({ bundle }) => {
@@ -62,6 +63,11 @@ export default {
     format: "esm", // Use ES module format
   },
   plugins: [
+    copy({
+      targets: [
+        { src: 'Assets/*', dest: 'dist/Assets' }
+      ]
+    }),
     // Minify JavaScript (optional)
     nodeResolve({
       // Specify the directory where your package.json is located (if not in the root)
