@@ -1,2 +1,2 @@
-export const apiUrl = 'https://localhost:5001/api';
+export const apiUrl = 'https://blinq.co/api';
 
