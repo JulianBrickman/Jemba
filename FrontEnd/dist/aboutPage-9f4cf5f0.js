@@ -1,4 +1,4 @@
-import{x as r,s as e}from"./navbar-f20f1ad7.js";import"./router-15db7225.js";class t extends e{render(){return r`
+import{x as e,s as r}from"./navbar-1e50daf5.js";import"./router-c070dd98.js";class t extends r{render(){return e`
   
 
 

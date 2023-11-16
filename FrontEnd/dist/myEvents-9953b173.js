@@ -1,4 +1,4 @@
-import{x as t,s as e,a as o}from"./navbar-f20f1ad7.js";import"./eventCard-a2a29e0c.js";import"./router-15db7225.js";class i extends e{render(){return(e=>{const o=(t,o)=>{e.setPopupData(o),e.togglePopup(t)};return t`
+import{x as t,s as e,a as o}from"./navbar-1e50daf5.js";import"./eventCard-5d16fbb5.js";import"./router-c070dd98.js";class i extends e{render(){return(e=>{const o=(t,o)=>{e.setPopupData(o),e.togglePopup(t)};return t`
     <style>
     .container {
       display: flex;

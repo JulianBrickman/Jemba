@@ -1,4 +1,4 @@
-import{x as e,s as t}from"./navbar-f20f1ad7.js";import{R as r}from"./router-15db7225.js";import"./input-string-6343d6cc.js";import"./infobox-1a77f603.js";import"./popup-ebe1b761.js";class i extends t{render(){return e`
+import{x as e,s as t}from"./navbar-1e50daf5.js";import{R as r}from"./router-c070dd98.js";import"./input-string-61394e04.js";import"./infobox-37c7f5a4.js";import"./popup-caefee74.js";class i extends t{render(){return e`
     <style>
     .button {
         background-color: rgb(6, 28, 113);

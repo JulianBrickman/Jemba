@@ -1,4 +1,4 @@
-import{x as e,s as t,a as i}from"./navbar-f20f1ad7.js";import{R as r}from"./router-15db7225.js";import"./input-string-6343d6cc.js";import"./infobox-1a77f603.js";import"./privacy-b83b74c6.js";import"./popup-ebe1b761.js";customElements.define("first-page",class extends t{render(){return e`
+import{x as e,s as t,a as i}from"./navbar-1e50daf5.js";import{R as r}from"./router-c070dd98.js";import"./input-string-61394e04.js";import"./infobox-37c7f5a4.js";import"./privacy-0b0d6dde.js";import"./popup-caefee74.js";customElements.define("first-page",class extends t{render(){return e`
     <style>
     body {
       font-family: Arial, sans-serif;
