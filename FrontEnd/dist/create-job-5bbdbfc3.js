@@ -1,4 +1,4 @@
-import{x as t,s as e}from"./navbar-aa6cca89.js";import"./router-9dd54fbf.js";import"./eventCard-792cc1a3.js";import"./popup-8ec94f67.js";import"./input-string-43a25f05.js";import"./input-paragraph-76de70ec.js";const o=e=>t`
+import{x as t,s as e}from"./navbar-af637ee2.js";import"./router-a0e37afb.js";import"./eventCard-ab683e7f.js";import"./popup-ed220e24.js";import"./input-string-0c8ec6a4.js";import"./input-paragraph-01abc27c.js";const o=e=>t`
    <style>
    .event-grid {
      display: grid;
