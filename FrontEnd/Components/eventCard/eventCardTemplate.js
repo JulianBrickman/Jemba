@@ -18,17 +18,9 @@ export const eventCardTemplate = (context) => {
 
     .course-card img {
         width: 100%;
-<<<<<<< Updated upstream
         height: auto;
         display: block; /* Removes any potential space at the bottom of the image */
     }
-=======
-        background-color: white;
-        overflow: hidden;
-        margin-bottom: 3px;
-      }
-      
->>>>>>> Stashed changes
 
     .course-info {
         padding: 10px;
