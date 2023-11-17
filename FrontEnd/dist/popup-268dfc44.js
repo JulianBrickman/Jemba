@@ -1,4 +1,4 @@
-import{x as t,s as p}from"./navbar-b4489946.js";customElements.define("pop-up",class extends p{render(){return t`
+import{x as t,s as p}from"./navbar-ab1c563a.js";customElements.define("pop-up",class extends p{render(){return t`
     <style>
       .popup {
         position: fixed;

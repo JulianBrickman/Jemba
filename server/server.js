@@ -408,12 +408,13 @@ app.get("/api/currentUser", (req,res) => {
 app.get("/api/fullUserList", (req,res) => {
   res.json({userlist})
 })
+/*
 const server = http.createServer(options, app);
 
 server.listen(5001, 'ec2-3-23-255-185.us-east-2.compute.amazonaws.com', () => {
   console.log('Server is running on HTTPS port 5001');
 });
-/*
+
 const port = process.env.PORT || 3000;
 app.listen(port, '0.0.0.0', () => {
   console.log(`Server running on port ${port}`);
@@ -426,3 +427,8 @@ server.listen(5001,'0.0.0.0', () => {
   console.log('Server is running on HTTPS port 5001');
 });
 */
+
+const port = process.env.PORT || 3000;
+app.listen(port, '0.0.0.0', () => {
+  console.log(`Server running on port ${port}`);
+});
