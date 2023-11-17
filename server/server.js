@@ -395,7 +395,7 @@ app.post("/api/findUser", (req, res) => {
   const foundUser = Currentuser.find((user) => user.Name === userData.Name);
 
   if (foundUser) {
-    res.json(foundUser);
+    res.json(foundUser); 
   } else {
     res.status(404).json({ message: "User not found" });
   }
@@ -429,6 +429,6 @@ server.listen(5001,'0.0.0.0', () => {
 */
 
 const port = process.env.PORT || 3000;
-app.listen(port, '0.0.0.0', () => {
+app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
