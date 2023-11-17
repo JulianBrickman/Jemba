@@ -34,7 +34,7 @@ export class Navbar extends LitElement {
             super.connectedCallback();
             //Not good code !
             if (apiUrl == 'http://blinq.co/api'){
-                apiUrl = 'http://blinq.co';
+                
             }
             if (this.role === "enterprise") {
                 this.entrepriseMode = true;
