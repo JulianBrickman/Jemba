@@ -1,5 +1,5 @@
 require('dotenv').config();
-const https = require('https');
+const http = require('https');
 const express = require('express');
 const app = express();
 const cors = require('cors');
@@ -408,7 +408,7 @@ app.get("/api/currentUser", (req,res) => {
 app.get("/api/fullUserList", (req,res) => {
   res.json({userlist})
 })
-const server = https.createServer(options, app);
+const server = http.createServer(options, app);
 
 server.listen(5001, 'ec2-3-23-255-185.us-east-2.compute.amazonaws.com', () => {
   console.log('Server is running on HTTPS port 5001');

@@ -1,1 +1,1 @@
-export{i as initRouter}from"./router-874e68dc.js";
+export{i as initRouter}from"./router-b7720290.js";
