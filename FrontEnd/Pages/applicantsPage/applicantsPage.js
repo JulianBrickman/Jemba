@@ -5,6 +5,7 @@ import { apiUrl } from '../../config.js';
 import { initRouter } from "../../router.js";
 
 
+
 export class ApplicantsPage extends LitElement {
   render() {
     return ApplicantsPageTemplate(this);
@@ -14,6 +15,7 @@ export class ApplicantsPage extends LitElement {
         exp: {Type: String},
         year: {Type: Number},
         gpa: {Type: Number},
+        enrolledUsers: {Type: Array},
         submissions: {Type: Array},
         filteredSubmissions: {Type: Array},
         liked: {Type: Boolean},
@@ -29,6 +31,7 @@ export class ApplicantsPage extends LitElement {
         this.exp = "all";
         this.gpa = 0;
         this.year = 0;
+        this.enrolledUsers = ['julianbrickman@gmail.com'];
         this.submissions = [{name: 'Benjamin Falkner', email:'bfalkner9@gmail.com', gpa:3.0,year:0,exp:'none',liked:false, filePath: "/Assets/360A5.txt"},{name: 'Julia Brickman', email:'juliabrickman@gmail.com ', gpa:4.0,year:4,exp:'internship',liked:false, filePath: "/Assets/360A5.txt"}];
         this.filteredSubmissions = this.submissions; 
         this.liked = false
@@ -37,7 +40,40 @@ export class ApplicantsPage extends LitElement {
         this.fileUrl = '';
         this.fileContent = '';
     }
+
+    fetchUserData() {
+      
+          fetch(`${apiUrl}/api/fetchProfiles`, {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ emails: this.enrolledUsers })
+          })
+          .then(response => response.json())
+          .then(data => {
+              // Assuming 'data' contains an array of user profiles
+              // You might need to adjust the following code based on the exact structure of the returned data
+              // Process each user profile
+            if (Array.isArray(data)) {
+              console.log(data)
+            } else {
+                // Handle the case where data is not an array
+                console.error('Expected an array of profiles, but received:', data);
+                this.error = "Invalid format of user data received";
+            }
+          })
+          .catch(error => {
+              this.error = "Error fetching user data";
+              console.error(error);
+          });
+      
+  }
+  
+
     filterSubmissions() {
+      this.fetchUserData()
+      
       this.filteredSubmissions = this.submissions.filter(submission => {
         const gpaMatch = this.gpa === 0 || submission.gpa === this.gpa;
         const yearMatch = this.year === 0 || submission.year === this.year;

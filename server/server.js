@@ -548,34 +548,37 @@ app.get("/api/fullUserList", (req,res) => {
   res.json({userlist})
 })
 
-//get all users enrolled in an event
-app.get("/api/events/:eventId/users", async (req, res) => {
-  const eventId = req.params.eventId;
-
+// Function to fetch profiles based on a list of emails
+app.post("/api/fetchProfiles", async (req, res) => {
   try {
-    // Find the event by its ID
-    const event = await mongoose.connection.collection("Events").findOne({ id: eventId });
+    const emailList = req.body.emails;
 
-    if (!event) {
-      return res.status(404).json({ message: "Event not found" });
+    if (!Array.isArray(emailList) || emailList.length === 0) {
+      return res.status(400).json({ message: 'Invalid input: emails should be a non-empty array' });
     }
 
-    // Extract the list of enrolled user emails
-    const enrolledUserEmails = event.enrolledUsers;
+    let profiles = [];
 
-    // Find the user details from Users collection
-    const userDetails = await mongoose.connection.collection("Users").find({ email: { $in: enrolledUserEmails } }).toArray();
+    for (const email of emailList) {
+      const profile = await mongoose.connection.collection(collectionName).findOne({ email: email });
+      if (profile) {
+        profiles.push(profile);
+      }
+    }
 
-    if (userDetails.length > 0) {
-      res.json(userDetails);
+    if (profiles.length > 0) {
+      res.json(profiles);
     } else {
-      res.status(404).json({ message: "No registered users found for this event" });
+      res.status(404).json({ message: 'No profiles found for the provided emails' });
     }
   } catch (error) {
-    console.error('Error querying event or users:', error);
-    res.status(500).json({ message: 'Error retrieving event or user data' });
+    console.error('Error fetching profiles:', error);
+    res.status(500).json({ message: 'Error fetching profiles' });
   }
 });
+
+
+
 
 
 
