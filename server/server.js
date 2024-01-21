@@ -10,7 +10,7 @@ const path = require('path');
 
 app.use(bodyParser.json());
 
-app.use(cors({ origin: 'http://blinq.co' }));
+app.use(cors({ origin: 'http://localhost:8000' }));
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -547,5 +547,36 @@ app.get("/api/currentUser", (req,res) => {
 app.get("/api/fullUserList", (req,res) => {
   res.json({userlist})
 })
+
+//get all users enrolled in an event
+app.get("/api/events/:eventId/users", async (req, res) => {
+  const eventId = req.params.eventId;
+
+  try {
+    // Find the event by its ID
+    const event = await mongoose.connection.collection("Events").findOne({ id: eventId });
+
+    if (!event) {
+      return res.status(404).json({ message: "Event not found" });
+    }
+
+    // Extract the list of enrolled user emails
+    const enrolledUserEmails = event.enrolledUsers;
+
+    // Find the user details from Users collection
+    const userDetails = await mongoose.connection.collection("Users").find({ email: { $in: enrolledUserEmails } }).toArray();
+
+    if (userDetails.length > 0) {
+      res.json(userDetails);
+    } else {
+      res.status(404).json({ message: "No registered users found for this event" });
+    }
+  } catch (error) {
+    console.error('Error querying event or users:', error);
+    res.status(500).json({ message: 'Error retrieving event or user data' });
+  }
+});
+
+
 
 app.listen(5001, () => {console.log("server Started at port 5001")});

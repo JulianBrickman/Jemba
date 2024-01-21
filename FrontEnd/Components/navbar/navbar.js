@@ -93,9 +93,13 @@ export class Navbar extends LitElement {
         routeToJobPosting(e) {
             Router.go("/createjobposting");
         }
-        routeToAbout() {
+        routeToAbout(e) {
             var currentURL = window.location.href;
             Router.go("/about");
+        }
+        routeToAppli(e) {
+            var currentURL = window.location.href;
+            Router.go("/applicantsPage");
         }
 }
 

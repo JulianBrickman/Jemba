@@ -46,7 +46,7 @@ export function initRouter() {
       }
     },
     {
-      path: "/enterpriseLogin",
+      path: "/enterpriseLoginPage",
       component: "enterprise-page", 
       //action: () => import("./Pages/myEvents/myEvents") 
       action: (context, commands) => {
@@ -57,7 +57,7 @@ export function initRouter() {
           return enterprisePageComponent;
         });
       }
-    },
+    }, 
     {
       path: "/createjobposting",
       component: "createjob-page", 
@@ -105,6 +105,11 @@ export function initRouter() {
       component: "privacy-page", 
       action: () => import("./Pages/privacy/privacy")
     },
+    {
+      path: "/applicantsPage",
+      component: "applicants-page",
+      action: () => import("./Pages/applicantsPage/applicantsPage")
+    }
   ]);
 }
 

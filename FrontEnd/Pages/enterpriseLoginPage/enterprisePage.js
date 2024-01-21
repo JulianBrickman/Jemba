@@ -1,8 +1,8 @@
 import { LitElement} from 'lit';
 import { Router } from "@vaadin/router";
-import {EnterprisePageTemplate} from './enterprisePage-template';
+import {EnterprisePageTemplate} from './enterprisePageTemplate.js';
 import { apiUrl } from '../../config.js';
-import { initRouter } from "../../router";
+import { initRouter } from "../../router.js";
 
 
 export class EnterprisePage extends LitElement {
