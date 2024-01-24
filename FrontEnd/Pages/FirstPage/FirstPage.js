@@ -39,7 +39,8 @@ class FirstPage extends LitElement {
             "city":"",
             "events":[],
             "experience":[],
-            "skills":[]
+            "skills":[],
+            "role": "user"
         };
         sessionStorage.clear();
         this.users = "";
@@ -158,6 +159,9 @@ class FirstPage extends LitElement {
         console.log(this.UserAttributes);
         this.addUser(this.UserAttributes);
     }
+    routeToEnterprise(e) {
+        Router.go(`/enterpriseLoginPage`);
+    }
    
 
     memberLogin(e) {
@@ -256,7 +260,7 @@ class FirstPage extends LitElement {
     }
 
     validatePhoneNumber(input,type) {
-        const phoneRegex = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/;
+        const phoneRegex = /^(\+\d{1,3}\s?)?(\(?\d{2,4}\)?[\s.-]?)?\d{3}[\s.-]?\d{2,4}$/;
         if (phoneRegex.test(input)) {
             this.error = null;
             this.UserAttributes[type] = String(input);

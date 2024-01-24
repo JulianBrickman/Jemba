@@ -2,11 +2,32 @@ import { html } from 'lit';
 import { InputString } from '../../Components/input-string/input-string';
 import { InputPassword } from '../../Components/input-password/input-password';
 import { Navbar } from '../../Components/navbar/navbar';
-import {Infobox} from '../../Components/infobox/infobox'
+
 
 export const EnterprisePageTemplate = (context) => {
     return html `
     <style>
+       body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      align-items:center;
+      justify-content: center;
+    }
+
+    .container {
+      background-color: #fff;
+      display: flex;
+      align-items:center;
+      justify-content: center;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      max-width: 500px;
+      margin-top: 100px;
+    }
+  
     .button {
         background-color: rgb(6, 28, 113);
         color: #fff;
@@ -28,49 +49,8 @@ export const EnterprisePageTemplate = (context) => {
   }
 </style>
     <div style="position: fixed;">
-    <div 
-    style=
-    "width:400px; 
-    height: 467px;
-    position: relative;
-    background-color:whitesmoke;
-    border-radius: 20px;
-    top: 150px;
-    left: 150px;"
-    >
-      <div
-      style=
-      " background-color: rgb(6, 28, 113);
-      border-radius: 10px;
-      height: 50px;
-      text-align: center;
-      width: 400px;
-      font-size: x-large;
-      font-family: sans-serif;
-      color: white;
-      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);"
-      >
-      Sign Up</div>
-      <div style ="
-      position: relative;
-      top: 18px;
-      width: 300px;
-      left: 50px;
-      
-      ">
-      <header style=
-        "background-color: rgb(6, 28, 113);
-        height: 30px;
-        border-radius: 10px;
-        color: white;
-        font-size: x-large;
-        text-align: center;
-        padding: 10px 0;
-        width: 100%;
-        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);">Already a Member ?</header>
-
-    </div>
-    ${context.studentCheckBoxClicked ? html`<style>
+    
+    ${context.loginClicked ? html`<style>
     .inputText {
       flex: 1;
       border-radius: 5px;
@@ -94,193 +74,303 @@ export const EnterprisePageTemplate = (context) => {
   .labelClass {
       color: #aeaeae;
   }
-  .container {
-      width: 800px;
-      margin: 0 auto; /* Center the container horizontally */
-  }
+
 
   .row {
-      display: flex;
-      margin-bottom: 20px;
+    display: flex;
+      justify-content: space-between;
+      
+      margin-bottom: 10px;
+      
+      width:80%;
+  }
+  .header{
+      text-align: center;
+      margin-bottom: 10px;
+      width:100%;
   }
 
+  .input-component {
+    width: 35%;
+     
+  }
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  .privacy-policy-checkbox {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.privacy-policy-checkbox input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.privacy-policy-checkbox label {
+  color: #555;
+  font-size: 14px;
+}
+
+.privacy-policy-checkbox {
+  background: none;
+  border: none;
+  color: #007bff; /* Link color */
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  padding: 0;
+  margin: 0;
+}
+.privacy-policy-link {
+  background: none;
+  border: none;
+  color: #007bff; /* Link color */
+  cursor: pointer;
+  text-decoration: underline;
+  font-family: inherit;
+  font-size: inherit;
+  padding: 0;
+  margin: 0;
+}
+
+
+
   </style>
-  <div style="
-      height: 600px;
-      width: 804px;
-      position: relative;
-      top: -166px;
-      left: -100px;
-      background-color: white;
-      border-radius: 10px;
-      border-style: solid;
-      border-color: lightgray;
-     " class="container">
-     <div style="height: 55px;
-     background-color: rgb(6, 28, 113);
-     border-radius: 9px;
-     border-bottom-left-radius: 0;
-     border-bottom-right-radius: 0;
-     color: white;
-     text-align: center;
-     font-size: x-large;
-     margin-bottom: 10px;
-     border-bottom-style: solid;
-     border-color: lightgray;"
- >About You</div>
- <div class="row">
-    <div style="
-    text-align: center;
-    width: 100%;
-    color: rgb(6, 28, 113);
-    font-size: x-large;"
-    >Login Infomation</div>
- </div>
- <div class="row">
-          <div class="input-component">
-            <input-string
-            width=250px;
-            placeholder="Email"
-            type="email"
-            >
-            </input-string>
+  <div style="display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;">
+      <div 
+        style=
+        "width: 65%;
+        height: 65%;
+        background-color:white;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        
+        "
+        >
+        
+        <h2 style="border-bottom: lightgray; color:rgb(6, 28, 113); border-bottom-style: solid;text-align:center; padding-bottom: 20px;">Company Sign Up</h2>
+          
+          <div class="header">
           </div>
-          <div class="input-component">
-              <input-password 
-                width=250
-                placeholder="Password"
-                type="Password">
+          <div class="header" style="color: rgb(6, 28, 113);
+        font-size: x-large; text-align: left; margin-left: 11%;">
+        Login Information
+    </div>
+    <div style="display: flex; justify-content: center;">
+    <div class="row" style="">
+              <div class="input-component" style="position: relative;
+              top: 10px">
+                <input-string
+                width=90%;
+                placeholder="Email"
+                type="email"
+                >
+                </input-string>
+              </div>
+              <div class="input-component">
+                  <input-password 
+                    width=90%
+                    placeholder="Password"
+                    type="Password">
+                  </input-password>
+              </div>
+              <div class="input-component">
+              <input-password
+                width=90%
+                placeholder="Confirm Password"
+              type="Confirm Password"
+              >
               </input-password>
+        </div>
           </div>
-          <div class="input-component">
-          <input-password
-            width=250
-            placeholder="Confirm Password"
-          type="Confirm Password"
-          >
-          </input-password>
+          </div>
+          <div class="header" style="color: rgb(6, 28, 113);
+        font-size: x-large;text-align: left; margin-left: 11%;">
+        Company Information
     </div>
-      </div>
-      <div class="row">
-    <div style="
-    text-align: center;
-    width: 100%;
-    color: rgb(6, 28, 113);
-    font-size: x-large;"
-    >Company Information</div>
- </div>
-     <div class="row">
-          <div class="input-component">
-            <input-string
-            width=250
-            placeholder="Company Name"
-            type="FirstName"
-            >
-            </input-string>
+    <div style="display: flex; justify-content: center;">
+        <div class="row">
+              <div class="input-component">
+                <input-string
+                width=90%
+                placeholder="Company Name"
+                type="CompanyName"
+                >
+                </input-string>
+              </div>
+              <div class="input-component">
+                <input-string
+                width=90%
+                placeholder="FirstName"
+                type="FirstName"
+                >
+                </input-string>
+              </div>
+              <div class="input-component">
+                <input-string
+                width=90%
+                placeholder="Last Name"
+                type="LastName"
+                >
+                </input-string>
+              </div>
           </div>
-          <div class="input-component">
-            <input-string
-            width=250
-            placeholder="Industry"
-            type="LastName"
-            >
-            </input-string>
+          </div>
+          <div style="display: flex; justify-content: center;">
+          <div class="row">
+              <div class="input-component">
+                    <input-string
+                    width=90%
+                    placeholder="Phone Number"
+                    type="Phone Number"
+                    >
+                    </input-string>
+              </div>
+              <div class="input-component">
+                <input-string
+                width=90%
+                placeholder="Website URL"
+                type="WebUrl"
+                >
+                </input-string>
+              </div>
+              <div class="input-component">
+                <input-string
+                width=90%
+                placeholder="Your Position"
+                type="Position"
+                >
+                </input-string>
+              </div>
+          </div>
+          </div>
+          <div style="display: flex; justify-content: center;">
+          <div class="row">
+              
+              <div class="input-component">
+                <input-string
+                width=90%
+                placeholder="City of residence"
+                type="city"
+                >
+                </input-string>
+              </div>
+              <div class="input-component">
+                <input-string
+                width=90%
+                placeholder="Province"
+                type="province"
+                >
+                </input-string>
+              </div>
+              <div class="input-component">
+                <input-string
+                width=90%
+                placeholder="Country"
+                type="country"
+                >
+                </input-string>
+              </div>
+          </div>
+          </div>
+          <div style="
+          height:18.5px;
+          margin-left: 5px;
+          color:rgb(6, 28, 113);
+            ">
+          ${context.error ? html`${context.error}` : html``}
+          </div>
+          <div class="button-container">
+            <button class="button" style="" @click=${(e) => context.loginBox(e)}>
+              Back
+            </button>
+            <div class="privacy-policy-checkbox">
+              <input type="checkbox" id="privacy-policy-checkbox" @change=${(e) => context.handleCheckboxChange(e)}>
+              <label for="privacy-policy-checkbox">I have read and agree to the <button class="privacy-policy-link" @click=${(e) => context.routeToPrivacy(e)}>Privacy Policy</button></label>
+            </div>
+            <div>
+              <button class="button" style="${context.privacyCheckBoxClicked ? '' : 'pointer-events: none; background-color: gray;'}" @click=${(e) => context.routeToHome(e)}>
+                Continue
+              </button>
+            </div>
+            </div>
           </div>
       </div>
-
-      <div class="row">
-          <div class="input-component">
-            <input-string
-            width=250
-            placeholder="GPA"
-            type="GPA"
-            >
-            </input-string>
-          </div>
-      </div>
-      <div style="
-      height:18.5px;
-      margin-left: 5px;
-      color:rgb(6, 28, 113);
-        ">
-      ${context.error ? html`${context.error}` : html``}
-      </div>
-      <button class="button" id="'submitButton" @focusout=${(e) => context.routeToHome(e)} style=
-      "position: relative;
-      top: 131px;
-      left: 10px;"
-      >
-      I'll do this later</button>
-      <button class="button" @click=${(e) => context.routeToHome(e)} style=
-      "position: relative;
-      top: 131px;
-      left: 570px;"
-      >
-      Continue</button>
-  </div>` : 
+    </div>
+    </div>` : 
   html ``}
-    <div style="
-      width: 297px;
-      height: 300px;
-      border-style: solid;
-      border-color: lightgrey;
-      position: relative;
-      left: 49px;
-      top: 13px;
-      border-top-style: none;
-      border-bottom-left-radius: 10px;
-      border-bottom-right-radius: 10px;">
-      <p style="
-      margin: 0px;
-      position: relative;
-      top: 30px;
-      text-align: center;
-      font-size: x-large;
-      color: rgb(6, 28, 113);"
-      >Login</p>
+    
+    <div style="display: flex; justify-content: center; width: 100vw;">
+    <div class="container">
       
-      <input-string style="position: relative;
-      top: 80px;"
-        width=278
-        placeholder="Email"
-        type="Email">
-      </input-string>
-      <input-password 
-      style="position: relative;
-      top: 85px;"
-        width=278
-        placeholder="Password"
-        type="Password">
-      </input-password>
-      <div style="
-      height:18.5px;
-      margin-left: 5px;
-      position: relative;
-      top: 88px;
-      color: rgb(6, 28, 113);
-      text-align: center;
+      <div class="login-section" >
+        <div style="
+         border: 1.5px solid lightgray;
+         border-radius: 10px;
+         padding:20px;
         ">
-      ${context.error ? html`${context.error}` : html``}
+           <h2 style="border-bottom: lightgray; color:rgb(6, 28, 113); border-bottom-style: solid;text-align:center; padding-bottom: 20px;">Enterprise Login</h2>
+           
+           <input-string 
+             width=97%
+             placeholder="Email"
+             type="Email">
+          </input-string>
+           <input-password 
+             width=97%
+            placeholder="Password"
+             type="Password">
+          </input-password>
+           ${context.error ? html`${context.error}` : html``}
+           
+          <button class="button" id="myButton" style=
+          "width: 98.5%;
+          background-color: #0af886;
+          color: black;
+          font-weight: 600;
+            margin-left: 5px;
+            margin-top: 30px;
+            font-size: 15px;
+            padding-bottom: 10px;"
+          @click=${(e) => context.memberLogin(e)}
+          >Ready</button>
+          <button id="myButton" style=
+           "background-color: rgba(250,235,240,255);
+            color: black;
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 6px;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+            width: 98.5%;
+            margin-left: 5px;
+            margin-top: 20px;
+            font-size: 15px;
+            padding-bottom: 10px;
+            margin-bottom:20px;
+            "
+          @click=${(e) => context.loginBox(e)}
+          >
+          Don't have an account? Sign up</button>
+          <button 
+          @click=${(e) => context.routeToFirst(e)}
+          >Member Login</button>
+        </div>
+        </div>
+        
+        
       </div>
-      <button class="button" id="myButton" style=
-      "position: relative;
-      top: 120px;
-      left: 73px;
-      width: 150px;"
-      @click=${(e) => context.memberLogin(e)}
-      >Login</button>
     </div>
-      <button class="button" style=
-      "position: relative;
-      top: 22px;
-      left: 106px;"
-      @click=${(e) => context.studentcheckBox(e)}
-      >
-      Enterprise sign up</button>
-  </div>
-  
-</div>
+    </div>
 
-${!context.studentCheckBoxClicked ? html`<info-box></info-box>` : html``}
+
     `;
 }

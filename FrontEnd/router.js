@@ -59,6 +59,24 @@ export function initRouter() {
       }
     }, 
     {
+      path: "/enterpriseHome",
+      component: "enterprise-home", 
+      //action: () => import("./Pages/myEvents/myEvents") 
+      action: (context, commands) => {
+        const userHasAccess = checkUserAccess(); // replace this with your condition
+
+        // If the user doesn't have access, redirect them to another page
+        if (!userHasAccess) {
+          return commands.redirect('/'); // or another appropriate path
+        }
+        // Load the profile page component and pass the context parameter
+        return import("./Pages/enterpriseHome/enterpriseHome").then((module) => {
+          const enterpriseHomeComponent = new module.enterpriseHome();
+          return enterpriseHomeComponent;
+        });
+      }
+    }, 
+    {
       path: "/createjobposting",
       component: "createjob-page", 
       //action: () => import("./Pages/myEvents/myEvents") 

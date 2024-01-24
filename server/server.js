@@ -513,6 +513,26 @@ app.post("/api/users", (req, res) => {
     }
   });
 });
+//adding new user to the database if he does not exist
+app.post("/api/company", (req, res) => {
+  const newUser = req.body;
+  mongoose.connection.collection("Companies").findOne({"email": req.body.email }, (error, result) => {
+    if (error) {
+      console.error('Error finding user:', error);
+    } else if (result) {
+      res.json({ message: "Account exists under this email"});
+    } else {
+      mongoose.connection.collection("Companies").insertOne(newUser, (error, result) => {
+        if (error) {
+          console.error('Error logging user:', error);
+        } else {
+          console.log('User logged:', newUser);
+        }
+      });
+      res.json({ message: "Company added successfully"});
+    }
+  });
+});
 //finding a user, used in profile section
 app.get("/api/profile", (req,res) => {
   const username = req.query.username;

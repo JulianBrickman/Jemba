@@ -25,7 +25,7 @@ export const FirstPageTemplate = (context) => {
       align-items:center;
       justify-content: center;
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-      border-radius: 5px;
+      border-radius: 7px;
       max-width: 1000px;
       margin-top: 100px;
     }
@@ -417,7 +417,10 @@ export const FirstPageTemplate = (context) => {
           @click=${(e) => context.studentcheckBox(e)}
           >
           Don't have an account? Sign up</button>
+          <button 
+          @click=${(e) => context.routeToEnterprise(e)}>Enterprise Login</button>
         </div>
+        
       </div>
     </div>
     </div>

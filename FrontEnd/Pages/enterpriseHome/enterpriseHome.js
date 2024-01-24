@@ -1,11 +1,11 @@
 import { LitElement, html } from 'lit';
-import { MyEventsTemplate } from './myEventsTemplate';
+import { MyEventsTemplate } from './myEventsTemplate.js';
 import { apiUrl } from '../../config.js';
-import { enterpriseEventsTemplate } from './enterpriseEventsTemplate.js';
+import { enterpriseEventsTemplate } from './enterpriseHomeTemplate.js';
 
-export class enterpriseEvents extends LitElement {
+export class enterpriseHome extends LitElement {
     render() {
-        return enterpriseEventsTemplate(this);
+        return enterpriseHomeTemplate(this);
     }
 
     static get properties() {
@@ -152,4 +152,4 @@ export class enterpriseEvents extends LitElement {
 
     
 
-customElements.define('enterprise-events', enterpriseEvents);
+customElements.define('enterprise-home', enterpriseHome);

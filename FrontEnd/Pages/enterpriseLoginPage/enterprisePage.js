@@ -12,8 +12,8 @@ export class EnterprisePage extends LitElement {
   static get properties() {
     return {
         ButtonClicked: { Type: Boolean},
-        studentCheckBoxClicked: { Type: Boolean},
-        employeeCheckBoxClicked: { Type: Boolean},
+        privacyCheckBoxClicked: { Type: Boolean},
+        loginClicked: { Type: Boolean},
         error: { Type: String},
         employmentButton: { Type: String},
     };
@@ -22,10 +22,22 @@ export class EnterprisePage extends LitElement {
     constructor() {
         super();
         this.ButtonClicked = false;
-        this.studentCheckBoxClicked = false;
-        this.employeeCheckBoxClicked = false;
         this.error = null;
-        this.UserAttributes = {};
+        this.UserAttributes = {
+        "CompanyName": "",
+        "FirstName":"",
+        "LastName":"",
+        "email":"",
+        "PhoneNumber": "",
+        "Position":"",
+        "WebUrl": "",
+        "Password":"",
+        "country":"",
+        "province":"",
+        "city":"",
+        "events":[],
+        "team":[],
+        "role": "enterprise"};
         this.users = "";
         this.currentUser = null;
         this.userPassword = ""
@@ -36,7 +48,7 @@ export class EnterprisePage extends LitElement {
 
     connectedCallback() {
         super.connectedCallback();
-        fetch("http://localhost:5001/api/enterprise")
+        fetch(`${apiUrl}/api/enterprise`)
         .then(response => response.json())
         .then(data => {
           this.users = this.convertValuesToLowerCaseJson(data.companyInformation); // Assign the data
@@ -85,15 +97,16 @@ export class EnterprisePage extends LitElement {
         }
     }
 
-    studentcheckBox(e) {
-        this.studentCheckBoxClicked = true;
+    loginBox(e) {
+        this.loginClicked = !this.loginClicked;
         this.error = null;
         this.currentUser = null;
         this.userPassword = null;
     }
 
-    employeecheckBox(e) {
-        this.employeeCheckBoxClicked = true;
+    handleCheckboxChange(e) {
+        this.privacyCheckBoxClicked = !this.privacyCheckBoxClicked;
+
     }
 
     validSignUpCredentials() {
@@ -133,9 +146,13 @@ export class EnterprisePage extends LitElement {
             this.error = null;
         }
 
-        sessionStorage.setItem('Name', String(this.UserAttributes["FirstName"]+this.UserAttributes["LastName"]));
+        sessionStorage.setItem('Name', String(this.UserAttributes["CompanyName"]));
         this.addUser(this.UserAttributes);
-        Router.go(`/home`);
+        Router.go(`/enterpriseHome`);
+    }
+    
+    routeToFirst(e) {
+        Router.go(`/`);
     }
 
     memberLogin(e) {
@@ -152,7 +169,7 @@ export class EnterprisePage extends LitElement {
             console.log(this.currentUser.CompanyName);
             sessionStorage.setItem('Name', String(this.currentUser.CompanyName));
             sessionStorage.setItem('role', 'enterprise');
-            Router.go(`/home`);
+            Router.go(`/enterpriseHome`);
         }
     }
 
@@ -202,23 +219,6 @@ export class EnterprisePage extends LitElement {
         }
     }
 
-    validateAge(input,type) {
-        if (input >= 15 && input <= 100) {
-            this.error = null;
-            this.UserAttributes[type] = input;
-        } else {
-            this.error = "Please Enter a Valid Age";
-        }
-    }
-
-    validateGPA(input,type) {
-        if (input >= 1.5 && input <= 4.3) {
-            this.error = null;
-            this.UserAttributes[type] = input;
-        } else {
-            this.error = "Please Enter a Valid Age";
-        }
-    }
 
     validateString(input,type) {
         const alphabetRegex = /^[a-zA-Z ]*$/;
@@ -227,15 +227,6 @@ export class EnterprisePage extends LitElement {
             this.UserAttributes[type] = input;
         } else {
            this.error = "Invalid Input";
-        }
-    }
-
-    validateYearsCompleted(input,type) {
-        if (input >= 0 && input <= 4) {
-            this.error = null;
-            this.UserAttributes[type] = input;
-        } else {
-            this.error = "Invalid Input";
         }
     }
 
@@ -249,13 +240,10 @@ export class EnterprisePage extends LitElement {
         }
     }
 
-    buildEmploymentSection() {
-        this.employmentButton = true;
-    }
-
+   
     addUser(newUser) {
         console.log(JSON.stringify(newUser));
-        fetch("http://localhost:5001/api/users", {
+        fetch("http://localhost:5001/api/company", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -265,6 +253,7 @@ export class EnterprisePage extends LitElement {
           .then(response => response.json())
           .then(data => {
             console.log("User added successfully:");
+            Router.go(`/enterpriseHome`);
           })
           .catch(error => {
             console.error("Error adding user:", error);
