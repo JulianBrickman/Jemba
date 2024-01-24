@@ -46,7 +46,7 @@ export function initRouter() {
       }
     },
     {
-      path: "/enterpriseLogin",
+      path: "/enterpriseLoginPage",
       component: "enterprise-page", 
       //action: () => import("./Pages/myEvents/myEvents") 
       action: (context, commands) => {
@@ -57,7 +57,25 @@ export function initRouter() {
           return enterprisePageComponent;
         });
       }
-    },
+    }, 
+    {
+      path: "/enterpriseHome",
+      component: "enterprise-home", 
+      //action: () => import("./Pages/myEvents/myEvents") 
+      action: (context, commands) => {
+        const userHasAccess = checkUserAccess(); // replace this with your condition
+
+        // If the user doesn't have access, redirect them to another page
+        if (!userHasAccess) {
+          return commands.redirect('/'); // or another appropriate path
+        }
+        // Load the profile page component and pass the context parameter
+        return import("./Pages/enterpriseHome/enterpriseHome").then((module) => {
+          const enterpriseHomeComponent = new module.enterpriseHome();
+          return enterpriseHomeComponent;
+        });
+      }
+    }, 
     {
       path: "/createjobposting",
       component: "createjob-page", 
@@ -105,6 +123,11 @@ export function initRouter() {
       component: "privacy-page", 
       action: () => import("./Pages/privacy/privacy")
     },
+    {
+      path: "/applicantsPage",
+      component: "applicants-page",
+      action: () => import("./Pages/applicantsPage/applicantsPage")
+    }
   ]);
 }
 

@@ -75,7 +75,7 @@ export const NavbarTemplate = (context) => {
       
       <div class="navbar">
       <img src="/Assets/logo.png" class="logo" alt="Logo">
-      <!-- <button class="button" @click=${(e) => context.routeToAbout(e)}>About Us</button> -->
+      <button class="button" @click=${(e) => context.routeToAppli(e)}>Appli</button> 
       ${context.inMainApplication ? html` 
       <!-- <button class="button" @click=${(e) => context.routeToFirst(e)}>Landing Page</button> -->
       <button class="button" @click=${(e) => context.routeToHome(e)}>Home</button>
@@ -84,7 +84,6 @@ export const NavbarTemplate = (context) => {
       `
       : html` <button class="button" @click=${(e) => context.routeToMyEvents(e)}>My Events</button>`}
       <button class="button" @click=${(e) => context.routeToProfile(e)}>Profile</button>
-      
       <div style="flex-grow: 1;"></div>
       <search-bar width=250></search-bar>` 
       

@@ -1,5 +1,4 @@
-require('dotenv').config();
-const http = require('https');
+
 const express = require('express');
 const app = express();
 const cors = require('cors');
@@ -8,26 +7,20 @@ const multer = require('multer');
 const nodemailer = require('nodemailer');
 const fs = require('fs');
 const path = require('path');
-const fullPath = path.join(__dirname, 'fullchain.pem');
-const fullPathPriv = path.join(__dirname, 'privkey.pem');
+
 app.use(bodyParser.json());
 
-app.use(cors({ origin: process.env.CORS_ORIGIN }));
-console.log(process.env.CORS_ORIGIN);
+app.use(cors({ origin: 'http://localhost:8000' }));
 
 app.use(express.urlencoded({ extended: true }));
 
 
 app.use(express.json());
 
-const options = {
-  key: fs.readFileSync(fullPathPriv),
-  cert: fs.readFileSync(fullPath),
-};
 const mongoose = require('mongoose');
 
 
-mongoose.connect(process.env.MONGO_URI, {
+mongoose.connect('mongodb+srv://julianbrickman:Jemba123@cluster0.j21pkaw.mongodb.net/', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   dbName: 'Master',
@@ -90,6 +83,157 @@ mongoose.connection.collection(collectionName).insertOne(dataToSave, (error, res
   });
   */
 
+
+
+
+
+let companyInformation = [
+  {
+    "CompanyName": "google",
+    "registeredemail": "julian@google.com",
+    "registered-employees": [{"Name":"Dan Smith","email":"dansmith@gmail.com"},{"Name":"Allison Smith","email":"Allisonsmith@gmail.com"}],
+    "Password": "abba1212",
+    "aboutMe": "I'm a third year computer science student who is very passionate about computer and I want a job",
+    "events": [{
+      "id": 1,
+      "eventTitle" : "Google Web Developer challenge",
+      "eventStartDate":"2023/04/21",
+      "eventEndDate" :"2024/06/29",
+      "eventDescription": "Good jobe finder code lots Good jobe finder code lots,Good jobe finder code lots,Good jobe finder code lots,Good jobe finder code lots,Good jobe finder code lots,Good jobe finder code lot,Good jobe finder code lots,Good jobe finder code lots",
+      "submitted": false,
+      "submittedFileName":"",
+      "title": "Web Dev",
+      "EndDate": "2023-10-15",
+      "StartDate": "2023-10-15",
+      "companyName": "Google",
+      "shortdescription": "A conference on the latest technology trends and innovations.",
+      "longdescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "img": "https://media-cldnry.s-nbcnews.com/image/upload/t_social_share_1024x768_scale,f_auto,q_auto:best/streams/2013/March/130326/1C6639340-google-logo.jpg"
+    },
+    {
+      "id": 2,
+      "eventTitle" : "Google Web Developer challenge",
+      "eventStartDate":"2023/04/21",
+      "eventEndDate" :"2024/06/29",
+      "eventDescription": "Good jobe finder code lots",
+      "submitted": false,
+      "submittedFileName":"",
+      "title": "Junior Developer",
+      "EndDate": "2023-10-15",
+      "StartDate": "2023-10-15",
+      "companyName": "Apple",
+      "shortdescription": "A conference on the latest technology trends and innovations.",
+      "longdescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "img": "https://media-cldnry.s-nbcnews.com/image/upload/t_social_share_1024x768_scale,f_auto,q_auto:best/streams/2013/March/130326/1C6639340-google-logo.jpg"
+    }]
+  }
+];
+
+let Currentuser = [
+  {
+    "Name": "julian brickman",
+    "FirstName": "Julian",
+    "LastName": "Brickman",
+    "email": "julianBrickman@gmail.com",
+    "school": "Queen's",
+    "gpa": "3.9",
+    "year": "2025",
+    "Password": "abba1212",
+    "aboutMe": "I'm a third year computer science student who is very passionate about computer and I want a job",
+    "events": [{
+      "id": 1,
+      "eventTitle" : "Google Web Developer challenge",
+      "eventStartDate":"2023/04/21",
+      "eventEndDate" :"2024/06/29",
+      "eventDescription": "Good jobe finder code lots",
+      "submitted": false,
+      "submittedFileName":"",
+      "title": "Web Dev",
+      "EndDate": "2023-10-15",
+      "StartDate": "2023-10-15",
+      "companyName": "Google",
+      "shortdescription": "A conference on the latest technology trends and innovations.",
+      "longdescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "img": "https://media-cldnry.s-nbcnews.com/image/upload/t_social_share_1024x768_scale,f_auto,q_auto:best/streams/2013/March/130326/1C6639340-google-logo.jpg"
+    },
+    {
+      "id": 2,
+      "eventTitle" : "Google Web Developer challenge",
+      "eventStartDate":"2023/04/21",
+      "eventEndDate" :"2024/06/29",
+      "eventDescription": "Good jobe finder code lots,Good jobe finder code lots,Good jobe finder code lots,Good jobe finder code lots,Good jobe finder code lots,Good jobe finder code lot,Good jobe finder code lots,Good jobe finder code lots",
+      "submitted": false,
+      "submittedFileName":"",
+      "title": "Junior Developer",
+      "EndDate": "2023-10-15",
+      "StartDate": "2023-10-15",
+      "companyName": "Apple",
+      "shortdescription": "A conference on the latest technology trends and innovations.",
+      "longdescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "img": "https://media-cldnry.s-nbcnews.com/image/upload/t_social_share_1024x768_scale,f_auto,q_auto:best/streams/2013/March/130326/1C6639340-google-logo.jpg"
+    },
+    {
+      "id": 6,
+      "submitted": true,
+      "eventTitle" : "Google Web Developer challenge",
+      "eventStartDate":"2023/04/21",
+      "eventEndDate" :"2024/06/29",
+      "eventDescription": "Good jobe finder code lots",
+      "submittedFileName":"User-Task-Assignment.json",
+      "title": "Graphic Designer",
+      "EndDate": "2023-10-15",
+      "StartDate": "2023-10-15",
+      "companyName": "Microsoft",
+      "shortdescription": "A conference on the latest technology trends and innovations.",
+      "longdescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "img": "https://media-cldnry.s-nbcnews.com/image/upload/t_social_share_1024x768_scale,f_auto,q_auto:best/streams/2013/March/130326/1C6639340-google-logo.jpg"
+    }]
+  },
+  {
+    "Name": "ben falkner",
+    "FirstName": "Ben",
+    "LastName": "Falkner",
+    "email": "Bflakner@gmail.com",
+    "school": "Queen's",
+    "gpa": "3.9",
+    "year": "2025",
+    "Password": "abba1212",
+    "aboutMe": "I'm a third year computer science student who is very passionate about computer and I want a job",
+    "events": [{
+      "id": 5,
+      "eventTitle" : "Google Web Developer challenge",
+      "eventStartDate":"2023/04/21",
+      "eventEndDate" :"2024/06/29",
+      "eventDescription": "Good jobe finder code lots",
+      "submitted": false,
+      "title": "Junior Developer",
+      "EndDate": "2023-10-15",
+      "StartDate": "2023-10-15",
+      "companyName": "Apple",
+      "shortdescription": "A conference on the latest technology trends and innovations.",
+      "longdescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "img": "https://media-cldnry.s-nbcnews.com/image/upload/t_social_share_1024x768_scale,f_auto,q_auto:best/streams/2013/March/130326/1C6639340-google-logo.jpg"
+    },
+    {
+      "id": 6,
+      "eventTitle" : "Google Web Developer challenge",
+      "eventStartDate":"2023/04/21",
+      "eventEndDate" :"2024/06/29",
+      "eventDescription": "Good jobe finder code lots",
+      "submitted": false,
+      "submittedFileName":"",
+      "title": "Graphic Designer",
+      "Users":["julianbrickman"],
+      "EndDate": "2023-10-15",
+      "StartDate": "2023-10-15",
+      "companyName": "Microsoft",
+      "shortdescription": "A conference on the latest technology trends and innovations.",
+      "longdescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "img": "https://media-cldnry.s-nbcnews.com/image/upload/t_social_share_1024x768_scale,f_auto,q_auto:best/streams/2013/March/130326/1C6639340-google-logo.jpg"
+    }]
+  }
+];
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     // Access the userId from the request body
@@ -122,10 +266,6 @@ app.post('/upload', upload.single('fileToUpload'), (req, res) => {
   res.status(200).send('File uploaded successfully!');
 });
 
-app.get('/api/hello', (req, res) => {
-  res.json({ message: 'Hello, this is a simple API!' });
-});
-
 //Get files
 app.get('/api/files/:userId/:filename', (req, res) => {
   const userId = req.params.userId; // Get the user ID from the URL parameters
@@ -138,7 +278,6 @@ app.get('/api/files/:userId/:filename', (req, res) => {
 //First page User login
 app.get("/api", (req,res) => {
   const username = req.query.username;
-  console.log(username);
   mongoose.connection.collection(collectionName).findOne({"email": username }, (error, result) => {
     if (error) {
       console.error('Error finding user:', error);
@@ -198,13 +337,10 @@ app.get("/api/eventPage", (req,res) => {
   });
 })
 
-//Needs to be updated
-app.get("/api/enterprise", (req,res) => {
-  res.json({companyInformation});
-})
+
 
 //Needs to be updated
-app.post("/api/findUserEnterprise", (req, res) => {
+app.post("/api/enterprise", (req, res) => {
   const userData = req.body; // This will contain the userData parameter sent from the frontend
   // Assuming you want to find a user based on some criteria (e.g., FirstName)
   const foundUser = companyInformation.find((user) => user.CompanyName === userData.CompanyName);
@@ -374,6 +510,26 @@ app.post("/api/users", (req, res) => {
     }
   });
 });
+//adding new user to the database if he does not exist
+app.post("/api/company", (req, res) => {
+  const newUser = req.body;
+  mongoose.connection.collection("Companies").findOne({"email": req.body.email }, (error, result) => {
+    if (error) {
+      console.error('Error finding user:', error);
+    } else if (result) {
+      res.json({ message: "Account exists under this email"});
+    } else {
+      mongoose.connection.collection("Companies").insertOne(newUser, (error, result) => {
+        if (error) {
+          console.error('Error logging user:', error);
+        } else {
+          console.log('User logged:', newUser);
+        }
+      });
+      res.json({ message: "Company added successfully"});
+    }
+  });
+});
 //finding a user, used in profile section
 app.get("/api/profile", (req,res) => {
   const username = req.query.username;
@@ -395,7 +551,7 @@ app.post("/api/findUser", (req, res) => {
   const foundUser = Currentuser.find((user) => user.Name === userData.Name);
 
   if (foundUser) {
-    res.json(foundUser); 
+    res.json(foundUser);
   } else {
     res.status(404).json({ message: "User not found" });
   }
@@ -408,27 +564,39 @@ app.get("/api/currentUser", (req,res) => {
 app.get("/api/fullUserList", (req,res) => {
   res.json({userlist})
 })
-/*
-const server = http.createServer(options, app);
 
-server.listen(5001, 'ec2-3-23-255-185.us-east-2.compute.amazonaws.com', () => {
-  console.log('Server is running on HTTPS port 5001');
+// Function to fetch profiles based on a list of emails
+app.post("/api/fetchProfiles", async (req, res) => {
+  try {
+    const emailList = req.body.emails;
+
+    if (!Array.isArray(emailList) || emailList.length === 0) {
+      return res.status(400).json({ message: 'Invalid input: emails should be a non-empty array' });
+    }
+
+    let profiles = [];
+
+    for (const email of emailList) {
+      const profile = await mongoose.connection.collection(collectionName).findOne({ email: email });
+      if (profile) {
+        profiles.push(profile);
+      }
+    }
+
+    if (profiles.length > 0) {
+      res.json(profiles);
+    } else {
+      res.status(404).json({ message: 'No profiles found for the provided emails' });
+    }
+  } catch (error) {
+    console.error('Error fetching profiles:', error);
+    res.status(500).json({ message: 'Error fetching profiles' });
+  }
 });
 
-const port = process.env.PORT || 3000;
-app.listen(port, '0.0.0.0', () => {
-  console.log(`Server running on port ${port}`);
-});
 
 
-const server = https.createServer(options, app);
 
-server.listen(5001,'0.0.0.0', () => {
-  console.log('Server is running on HTTPS port 5001');
-});
-*/
 
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
-});
+
+app.listen(5001, () => {console.log("server Started at port 5001")});
