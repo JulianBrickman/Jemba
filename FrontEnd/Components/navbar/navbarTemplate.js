@@ -75,19 +75,16 @@ export const NavbarTemplate = (context) => {
       
       <div class="navbar">
       <img src="/Assets/logo.png" class="logo" alt="Logo">
-      <button class="button" @click=${(e) => context.routeToAppli(e)}>Appli</button> 
+      
       ${context.inMainApplication ? html` 
-      <!-- <button class="button" @click=${(e) => context.routeToFirst(e)}>Landing Page</button> -->
-      <button class="button" @click=${(e) => context.routeToHome(e)}>Home</button>
-      ${context.entrepriseMode ? html`
-      <button class="button" @click=${(e) => context.routeToJobPosting(e)}>Create Posting</button>
-      `
-      : html` <button class="button" @click=${(e) => context.routeToMyEvents(e)}>My Events</button>`}
-      <button class="button" @click=${(e) => context.routeToProfile(e)}>Profile</button>
-      <div style="flex-grow: 1;"></div>
-      <search-bar width=250></search-bar>` 
-      
-      
+        <button class="button" @click=${(e) => context.routeToHome(e)}>Home</button>
+        ${context.entrepriseMode ? html`
+        <button class="button" @click=${(e) => context.routeToJobPosting(e)}>Create Posting</button>
+        `
+        : html` <button class="button" @click=${(e) => context.routeToMyEvents(e)}>My Events</button>`}
+        <button class="button" @click=${(e) => context.routeToProfile(e)}>Profile</button>
+        <div style="flex-grow: 1;"></div>
+        <search-bar width=250></search-bar>` 
       : html``}
       </div>
       

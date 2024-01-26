@@ -340,16 +340,19 @@ app.get("/api/eventPage", (req,res) => {
 
 
 //Needs to be updated
-app.post("/api/enterprise", (req, res) => {
-  const userData = req.body; // This will contain the userData parameter sent from the frontend
-  // Assuming you want to find a user based on some criteria (e.g., FirstName)
-  const foundUser = companyInformation.find((user) => user.CompanyName === userData.CompanyName);
-
-  if (foundUser) {
-    res.json(foundUser);
-  } else {
-    res.status(404).json({ message: "User not found" });
-  }
+app.get("/api/enterprise", (req, res) => {
+  const username = req.query.username;
+  mongoose.connection.collection("Companies").findOne({"email": username }, (error, result) => {
+    if (error) {
+      
+      console.error('Error finding user:', error);
+    } else if (result) {
+      console.log(result)
+      res.json({"Password": result.Password, "Name": result.CompanyName});
+    } else {
+      console.log('User not found');
+    }
+  });
 });
 //Adding enrolled users to an event
 app.post('/addEvent/:userId', (req, res) => {

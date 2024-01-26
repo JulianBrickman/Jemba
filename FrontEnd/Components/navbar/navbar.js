@@ -2,7 +2,6 @@ import { LitElement, html } from 'lit';
 import { NavbarTemplate } from './navbarTemplate';
 import { Router } from "@vaadin/router";
 import { initRouter } from "../../router";
-//import { initRouter } from "../../../router";
 import { apiUrl } from '../../config.js';
 
 export class Navbar extends LitElement {
@@ -32,23 +31,8 @@ export class Navbar extends LitElement {
 
         connectedCallback() {
             super.connectedCallback();
-            //Not good code !
-            if (apiUrl == 'http://blinq.co/api'){
-                
-            }
-            if (this.role === "enterprise") {
-                this.entrepriseMode = true;
-            } else {
-                this.entrepriseMode = false;
-            }
-
-            // This is very bad code, need to refactor later on
-            var currentURL = window.location.href;
-            if (currentURL === apiUrl) {
-                this.inMainApplication = false;
-            } else {
-                this.inMainApplication = true;
-            }
+            this.triggerReload();
+            //idk what this is
             window.addEventListener("popstate", () => {
                 this.triggerReload();
             });
@@ -58,16 +42,24 @@ export class Navbar extends LitElement {
         }
 
         triggerReload() {
-              this.triggerRerender+=1;
-                var currentURL = window.location.href;
-                if (currentURL === (`${apiUrl}` ||`${apiUrl}enterpriseLogin` ||`${apiUrl}about`) ) {
-                    this.inMainApplication = false;
-                } else {
+            this.triggerRerender+=1;
+            var currentURL = window.location.href;
+            console.log(currentURL)
+            if (currentURL === ("http://localhost:8000/" || "http://localhost:8000/about" || "http://localhost:8000/enterpriseLoginPage" )  ) {
+                this.inMainApplication = false;
+            } else {
+                console.log("here")
+                this.inMainApplication = true;
+                this.currentUser = sessionStorage.getItem('email');
+                this.role = sessionStorage.getItem('role');
+                if (this.role === "enterprise") {
+                    this.entrepriseMode = true;
                     this.inMainApplication = true;
-                    this.currentUser = sessionStorage.getItem('email');
-                    this.role = sessionStorage.getItem('role');
-                    console.log(this.currentUser);
+                        
+                } else {
+                    this.entrepriseMode = false;
                 }
+            }
           
         }
 

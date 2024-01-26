@@ -1,7 +1,6 @@
 import { LitElement, html } from 'lit';
-import { MyEventsTemplate } from './myEventsTemplate.js';
 import { apiUrl } from '../../config.js';
-import { enterpriseEventsTemplate } from './enterpriseHomeTemplate.js';
+import { enterpriseHomeTemplate } from './enterpriseHomeTemplate.js';
 
 export class enterpriseHome extends LitElement {
     render() {
@@ -27,7 +26,7 @@ export class enterpriseHome extends LitElement {
         this.previouslyLoaded = false;
         this.eventData= [];
         this.submittedEvents = [];
-        this.currentUser = {"email":sessionStorage.getItem('email')};
+        this.currentUser = {"email":sessionStorage.getItem('email'), "Name": sessionStorage.getItem('Name'), "role": sessionStorage.getItem('role')};
         this.user = "";
         this.filePopup = false;
         this.succesfullyUploaded = null;
@@ -37,7 +36,7 @@ export class enterpriseHome extends LitElement {
     connectedCallback() {
         super.connectedCallback();
         if (this.eventData.length ===0 ) {
-            this.fetchUserData();
+            //this.fetchUserData();
         }
     }
 
@@ -65,6 +64,7 @@ export class enterpriseHome extends LitElement {
         }
     }
 
+
     togglePopup(e) {
         this.popupOpen = !this.popupOpen
     }
@@ -88,43 +88,7 @@ export class enterpriseHome extends LitElement {
         this.popupData = event;
     }
 
-    fileSubmissionButton(e) {
-        this.filePopup = true;
-    }
-
-    async fileSubmission(e,id) {
-        e.preventDefault();
-        const fileInput = this.shadowRoot.querySelector('#fileToUpload');
-        const file = fileInput.files[0];
-        console.log(file)
-        const url = (window.URL.createObjectURL(file));
-        const link = document.createElement('a');
-        link.href = url;
-        link.target = '_blank'; 
-        link.textContent = String(file.name);
-        link.setAttribute('download', file.name);
-        console.log(file)
-        this.filesToDisplay.push({link,id});
-            if (file) {
-                const formData = new FormData();
-                formData.append('userId',String(this.currentUser.email));
-                formData.append('eventId',String(id));
-                formData.append('fileToUpload', file);
-                fetch(`${apiUrl}/user/addSubmission/${this.currentUser.email}`, {
-                method: 'POST',
-                body: formData,
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        this.succesfullyUploaded = "Submission Sucessful";
-                    })
-                    .catch(error => {
-                        this.succesfullyUploaded = "Application Error";
-                        console.error('Error:', error);
-                    });
-            }
-    }
-
+    
     displayFile(filename,id) {
         console.log(filename.filename);
         const userId = String(this.currentUser.email+id);

@@ -39,7 +39,7 @@ export class EnterprisePage extends LitElement {
         "team":[],
         "role": "enterprise"};
         this.users = "";
-        this.currentUser = null;
+        this.currentUser = [];
         this.userPassword = ""
         this.employmentButton = false;
         this.validCrendentials = false;
@@ -48,21 +48,38 @@ export class EnterprisePage extends LitElement {
 
     connectedCallback() {
         super.connectedCallback();
-        fetch(`${apiUrl}/api/enterprise`)
+    }
+
+    userEmailLogin(input,type) {
+        fetch(`${apiUrl}/api/enterprise?username=${input}`)
         .then(response => response.json())
         .then(data => {
-          this.users = this.convertValuesToLowerCaseJson(data.companyInformation); // Assign the data
+          // Log the response from the APIW
+          console.log(data)
+          this.currentUser["Password"] = data.Password;
+          this.currentUser["Name"] = data.Name;
+          
         })
         .catch(error => {
-          console.error("Error fetching data:", error);
+        
+           this.error = "User Not Found"
         });
+        
+        
+        
     }
 
     handleChangedValue(e) {
         //e.stopPropagation();
         switch(e.detail.type) {
             case "Email" :
-                this.userEmailLogin(e.detail.value,null);
+                if(this.validateEmail(e.detail.value,null)){
+                    this.userEmailLogin(e.detail.value,"email");
+                }
+                else{
+                    
+                    this.error = "Invalid Email"
+                }
                 break;
             case "Password" :
                 this.userPassword = e.detail.value;
@@ -138,24 +155,13 @@ export class EnterprisePage extends LitElement {
         }
     }
 
-    routeToHome(e) {
-        if (!this.validSignUpCredentials()) {
-            this.error = "Invalid Sign up credentials";
-            return;
-        } else {
-            this.error = null;
-        }
-
-        sessionStorage.setItem('Name', String(this.UserAttributes["CompanyName"]));
-        this.addUser(this.UserAttributes);
-        Router.go(`/enterpriseHome`);
-    }
     
     routeToFirst(e) {
         Router.go(`/`);
     }
 
     memberLogin(e) {
+        this.error = null
         if (!this.currentUser) {
             this.error = "Please Enter valid Email Address";
             return;
@@ -166,52 +172,34 @@ export class EnterprisePage extends LitElement {
         if (this.currentUser.Password!== this.userPassword) {
             this.error = "Incorrect password or email";
         } else {
-            console.log(this.currentUser.CompanyName);
-            sessionStorage.setItem('Name', String(this.currentUser.CompanyName));
+            sessionStorage.setItem('email', String(this.currentUser.email));
+            sessionStorage.setItem('Name', String(this.currentUser.Name));
             sessionStorage.setItem('role', 'enterprise');
+
+
             Router.go(`/enterpriseHome`);
         }
     }
 
-    validateEmail(input,type) {
+    validateEmail(input, type) {
+        
         const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-        if (!emailRegex.test(input)) {
-            if (!type) {
-                return false; //Used for user login
-            }
-           this.error = "Invalid Email";
-        } else {
-            if (!type) {
-                return true; //Used for user login
-            }
+    
+        if (emailRegex.test(input)) {
+            
             this.error = null;
-            this.UserAttributes["registered-email"] = input;
-        }
-    }
-
-    userEmailLogin(input,type) {
-        if (this.validateEmail(input,type)) {
-            let foundUser = null;
-
-            console.log(this.users);
-
-            this.users.forEach(user => {
-            if (user.registeredemail === this.convertAllCharsToLowerCase(input)) {
-                foundUser = user;
-            }
-            });
-
-            if (foundUser) {
-                this.currentUser = foundUser;
-                this.error = null;
-            } else {
-                this.error = "User not found";
-            }
+            this.currentUser.email = input;
+            return true; // Used for user login
+            
+            
         } else {
-            this.error = "Invalid Email";
+            return false; // Used for user login
+            
         }
-
     }
+    
+
+    
 
     userEmailPassword(input) {
         if (!this.currentUser) {
@@ -253,6 +241,9 @@ export class EnterprisePage extends LitElement {
           .then(response => response.json())
           .then(data => {
             console.log("User added successfully:");
+            sessionStorage.setItem('email', String(this.currentUser.email));
+            sessionStorage.setItem('Name', String(this.currentUser.Name));
+            sessionStorage.setItem('role', 'enterprise');
             Router.go(`/enterpriseHome`);
           })
           .catch(error => {
