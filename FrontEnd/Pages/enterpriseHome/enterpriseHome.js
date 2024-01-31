@@ -36,13 +36,13 @@ export class enterpriseHome extends LitElement {
     connectedCallback() {
         super.connectedCallback();
         if (this.eventData.length ===0 ) {
-            //this.fetchUserData();
+            this.fetchUserData();
         }
     }
 
     fetchUserData() {
         if (this.eventData.length === 0) {
-            fetch(`${apiUrl}/api/home/?username=${this.currentUser.email}`)
+            fetch(`${apiUrl}/api/home/?company-${this.currentUser.Name}`)
             .then(response => response.json())
             .then(data => {
             // Log the response from the API

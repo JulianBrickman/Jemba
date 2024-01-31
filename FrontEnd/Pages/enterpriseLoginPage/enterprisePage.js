@@ -55,13 +55,12 @@ export class EnterprisePage extends LitElement {
         .then(response => response.json())
         .then(data => {
           // Log the response from the APIW
-          console.log(data)
+          //really bad to save password before logged in
           this.currentUser["Password"] = data.Password;
           this.currentUser["Name"] = data.Name;
           
         })
         .catch(error => {
-        
            this.error = "User Not Found"
         });
         

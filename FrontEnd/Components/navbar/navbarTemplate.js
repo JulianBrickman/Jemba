@@ -77,11 +77,14 @@ export const NavbarTemplate = (context) => {
       <img src="/Assets/logo.png" class="logo" alt="Logo">
       
       ${context.inMainApplication ? html` 
-        <button class="button" @click=${(e) => context.routeToHome(e)}>Home</button>
+        
         ${context.entrepriseMode ? html`
+        <button class="button" @click=${(e) => context.routeToEnterpriseHome(e)}>Home</button>
         <button class="button" @click=${(e) => context.routeToJobPosting(e)}>Create Posting</button>
         `
-        : html` <button class="button" @click=${(e) => context.routeToMyEvents(e)}>My Events</button>`}
+        : html` 
+        <button class="button" @click=${(e) => context.routeToHome(e)}>Home</button>
+        <button class="button" @click=${(e) => context.routeToMyEvents(e)}>My Events</button>`}
         <button class="button" @click=${(e) => context.routeToProfile(e)}>Profile</button>
         <div style="flex-grow: 1;"></div>
         <search-bar width=250></search-bar>` 

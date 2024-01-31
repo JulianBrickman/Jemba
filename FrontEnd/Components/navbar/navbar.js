@@ -44,17 +44,17 @@ export class Navbar extends LitElement {
         triggerReload() {
             this.triggerRerender+=1;
             var currentURL = window.location.href;
-            console.log(currentURL)
-            if (currentURL === ("http://localhost:8000/" || "http://localhost:8000/about" || "http://localhost:8000/enterpriseLoginPage" )  ) {
+            if (currentURL === ("http://localhost:8000/" || "http://localhost:8000/about" )   ) {
                 this.inMainApplication = false;
+            } else if (currentURL == "http://localhost:8000/enterpriseLoginPage"  ){
+                this.inMainApplication = false
             } else {
-                console.log("here")
+                
                 this.inMainApplication = true;
                 this.currentUser = sessionStorage.getItem('email');
                 this.role = sessionStorage.getItem('role');
                 if (this.role === "enterprise") {
                     this.entrepriseMode = true;
-                    this.inMainApplication = true;
                         
                 } else {
                     this.entrepriseMode = false;
@@ -77,6 +77,10 @@ export class Navbar extends LitElement {
         routeToHome() {
             var currentURL = window.location.href;
             Router.go("/home");
+        }
+        routeToEnterpriseHome() {
+            var currentURL = window.location.href;
+            Router.go("/enterpriseHome");
         }
         routeToProfile(){
             sessionStorage.setItem('searchedUser',this.currentUser);

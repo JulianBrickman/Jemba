@@ -27,6 +27,7 @@ export const enterpriseHomeTemplate = (context) => {
         border-radius: 15px;
         padding: 20px;
         max-width: 95%; /* Set maximum width for the section */
+        margin-top:80px;
         
     }
     .event-section h3,h1 {
@@ -167,34 +168,9 @@ export const enterpriseHomeTemplate = (context) => {
       </div>`: html`<section class="event-section"><h3 style=" text-align: center;
   border-bottom-style: none; 
   margin-bottom:2px;
-  color: rgb(6, 28, 113); ">No live events, Check the home page to enroll in an event!</h3></section>`}
-   ${context.submittedEvents.length > 0 ? html`
-   </div>
-        <div style=" background-color: white;
-        width: 90%;
-        border-radius: 5px;
-        box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.3);
-        padding: 1%;
-        margin-top: 40px;
-        border-radius:10px;
-        position: relative;">
-        <h1 style="border-bottom: lightgray; color:rgb(6, 28, 113);
-        border-bottom-style: solid; padding-top:10px;">Submitted</h1>
-      <div class="event-grid">
-        ${context.submittedEvents.map(event => html`
-          <button class="card-button" @click=${(e) => openPopup(e, event)}>
-            <event-card
-              title=${event.title}
-              description=${event.shortdescription}
-              img=${event.img}
-              placeholder=""
-            ></event-card>
-          </button>
-        `)}
-      </div>
-      </div>`: html`<section class="event-section"><h3 style=" text-align: center;
   
-  color: rgb(6, 28, 113);">No live events, Check home page to enroll in an event!</h3></section>`}
+  color: rgb(6, 28, 113); ">You have no events. Click create posting to start a new event!</h3></section>`}
+   
 
     
 
