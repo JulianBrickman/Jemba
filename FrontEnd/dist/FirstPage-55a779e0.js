@@ -1,4 +1,88 @@
-import{x as e,s as t,a as i}from"./navbar-f1cb28b7.js";import{R as r}from"./router-05a9459e.js";import"./input-string-b7db379d.js";import"./infobox-90eb45e3.js";import"./privacy-8bda3b6f.js";import"./popup-d9cbddf9.js";customElements.define("first-page",class extends t{render(){return e`
+import{x as e,s as t}from"./navbar-ac35cdda.js";import{R as i}from"./router-c2e88fcf.js";import"./input-string-402e158f.js";import"./input-password-8006b2d1.js";import"./popup-cb0edbb6.js";import"./privacy-f3b338a6.js";import{a as r}from"./config-f8454f4c.js";customElements.define("info-box",class extends t{render(){return e`
+    <style>
+      .box {
+        width: 100%;
+        background-color: white;
+        border: 1px solid lightgrey;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        flex: 1;
+        padding: 5%;
+        
+      }
+
+      .title {
+        font-size: 28px;
+        color: 62929E;
+      }
+
+      .description {
+        font-size: 25px; /* Increase the font size */
+        font-weight: bold; /* Make the text bold */
+        text-align: left; /* Align the text to the left */
+        color: black;
+        padding-left:5%
+    }
+
+
+      .features {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding:20px;
+        padding-left:40px; 
+        padding-right:40px; 
+        
+      }
+      .feature {
+        text-align: center;
+        max-width: 30%;
+        font-size: 15px;
+      }
+      .icon {
+        width:130px;
+        margin-bottom: 10px;
+        color: #0078d4; /* Use your brand color */
+      }
+      .icons {
+        width:150px;
+        color: #0078d4; /* Use your brand color */
+      }
+      
+      .button {
+        background-color: rgb(6, 28, 113);
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        border-radius: 10px;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+        
+      }
+    </style>
+    <div class="box">
+      <p class="description">Showcase Your Skills. <br/> Fast-Track Your Career.</p>
+      <div class="features">
+        <div class="feature">
+        <img src="/Assets/CompetitionB.png" class="icon" alt="Logo">
+          <p >Compete for Jobs</p>
+        </div>
+        <div class="feature">
+        <img src="/Assets/ExperienceB.png" class="icon" alt="Logo">
+          <p>Gain Experience</p>
+        </div>
+        <div class="feature">
+        <img src="/Assets/RecrutingB.png" class="icon" alt="Logo">
+          <p>Simplify Recruiting</p>
+        </div>
+      </div>
+      <!-- <pop-up 
+    buttonTitle = "Learn more"
+    > -->
+    </pop-up>
+    </div>
+    
+  `}static get properties(){return{}}constructor(){super()}connectedCallback(){super.connectedCallback(),console.log("Loaded into the dom")}});customElements.define("first-page",class extends t{render(){return e`
     <style>
     body {
       font-family: Arial, sans-serif;
@@ -16,7 +100,7 @@ import{x as e,s as t,a as i}from"./navbar-f1cb28b7.js";import{R as r}from"./rout
       align-items:center;
       justify-content: center;
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-      border-radius: 5px;
+      border-radius: 7px;
       max-width: 1000px;
       margin-top: 100px;
     }
@@ -407,10 +491,13 @@ import{x as e,s as t,a as i}from"./navbar-f1cb28b7.js";import{R as r}from"./rout
           @click=${e=>t.studentcheckBox(e)}
           >
           Don't have an account? Sign up</button>
+          <button 
+          @click=${e=>t.routeToEnterprise(e)}>Enterprise Login</button>
         </div>
+        
       </div>
     </div>
     </div>
 
 `}
-    `;var t}static get properties(){return{ButtonClicked:{Type:Boolean},studentCheckBoxClicked:{Type:Boolean},privacyCheckBoxClicked:{Type:Boolean},employeeCheckBoxClicked:{Type:Boolean},error:{Type:String},employmentButton:{Type:String}}}constructor(){super(),this.ButtonClicked=!1,this.studentCheckBoxClicked=!1,this.privacyCheckBoxClicked=!1,this.employeeCheckBoxClicked=!1,this.error=null,this.UserAttributes={FirstName:"",LastName:"",email:"",school:"",gpa:"",year:"",Password:"",province:"",city:"",events:[],experience:[],skills:[]},sessionStorage.clear(),this.users="",this.currentUser=[],this.inputtedPassword=null,this.employmentButton=!1,this.validCrendentials=!1,this.pageHeight=0,this.addEventListener("custom-string-event",this.handleChangedValue)}connectedCallback(){super.connectedCallback(),this.pageHeight=document.documentElement.scrollHeight}handleChangedValue(e){switch(e.stopPropagation(),e.detail.type){case"Email":this.userEmailLogin(e.detail.value,null);break;case"Password":this.inputtedPassword=e.detail.value,this.UserAttributes.Password=e.detail.value;break;case"Confirm Password":if(e.detail.value!==this.UserAttributes.Password)return void(this.error="Passwords do not match");this.error=null;break;case"Age":this.validateAge(e.detail.value,e.detail.type);break;case"email":this.validateEmail(e.detail.value,e.detail.type);break;case"year":this.validateYearsCompleted(e.detail.value,e.detail.type);break;case"Phone Number":this.validatePhoneNumber(e.detail.value,e.detail.type);break;case"gpa":this.validateGPA(e.detail.value,e.detail.type);break;default:return void this.validateString(e.detail.value,e.detail.type)}}studentcheckBox(e){this.studentCheckBoxClicked=!0,this.error=null,this.currentUser=null,this.inputtedPassword=null}handleCheckboxChange(e){this.privacyCheckBoxClicked=!this.privacyCheckBoxClicked}studentuncheckBox(e){this.studentCheckBoxClicked=!1,this.error=null,this.currentUser=null,this.inputtedPassword=null}areAllFieldsFilled(e){for(const t in e)if(e.hasOwnProperty(t)){const i=e[t];if(Array.isArray(i))continue;if("string"==typeof i&&""===i.trim())return!1}return!0}convertValuesToLowerCaseJson(e){for(let t=0;t<e.length;t++){const i=e[t];for(const e in i)i.hasOwnProperty(e)&&"string"==typeof i[e]&&(i[e]=i[e].toLowerCase())}return e}convertAllCharsToLowerCase(e){if("string"==typeof e)return e.toLowerCase()}routeToHome(e){this.areAllFieldsFilled(this.UserAttributes)?(this.error=null,this.UserAttributes.Name=this.UserAttributes.FirstName+" "+this.UserAttributes.LastName,this.UserAttributes.aboutMe="",console.log(this.UserAttributes),this.addUser(this.UserAttributes)):this.error="Invalid Sign up credentials"}memberLogin(e){this.currentUser?this.inputtedPassword?this.currentUser.Password!==this.inputtedPassword?this.error="Incorrect password or email":(sessionStorage.setItem("email",this.currentUser.email),sessionStorage.setItem("role","user"),r.go("/home")):this.error="Please Enter Password":this.error="Please Enter valid Email Address"}validateEmail(e,t){if(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(e)){if(!t)return!0;this.error=null,this.UserAttributes[t]=this.convertAllCharsToLowerCase(e)}else{if(!t)return!1;this.error="Invalid Email"}}userEmailLogin(e,t){fetch(`${i}/api?username=${e}`).then((e=>e.json())).then((t=>{this.currentUser.Password=t.Password,this.currentUser.Name=t.Name,this.currentUser.email=e})).catch((e=>{this.error="User Not Found"})),this.validateEmail(e,t)?this.currentUser.email=e:this.error="Invalid Email"}userEmailPassword(e){this.currentUser||(this.error="Please enter an email address")}validateAge(e,t){e>=15&&e<=100?(this.error=null,this.UserAttributes[t]=String(e)):this.error="Please Enter a Valid Age"}validateGPA(e,t){e>=1.5&&e<=4.3?(this.error=null,this.UserAttributes[t]=String(e)):this.error="Please Enter a Valid Age"}validateString(e,t){/^[a-zA-Z \p{P}]*$/u.test(e)?(this.error=null,this.UserAttributes[t]=e):this.error="Invalid Input"}validateYearsCompleted(e,t){e>=0&&e<=4?(this.error=null,this.UserAttributes[t]=String(e)):this.error="Invalid Input"}validatePhoneNumber(e,t){/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/.test(e)?(this.error=null,this.UserAttributes[t]=String(e)):this.error="Invalid Input"}addUser(e){fetch(`${i}/api/users`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(e)}).then((e=>e.json())).then((e=>{"Account exists under this email"===e.message?this.error="Account exists under this email":(sessionStorage.setItem("email",this.UserAttributes.email),sessionStorage.setItem("role","user"),r.go("/home"))})).catch((e=>{console.error("Error adding user:",e)}))}routeToPrivacy(e){r.go("/privacy")}});
+    `;var t}static get properties(){return{ButtonClicked:{Type:Boolean},studentCheckBoxClicked:{Type:Boolean},privacyCheckBoxClicked:{Type:Boolean},employeeCheckBoxClicked:{Type:Boolean},error:{Type:String},employmentButton:{Type:String}}}constructor(){super(),this.ButtonClicked=!1,this.studentCheckBoxClicked=!1,this.privacyCheckBoxClicked=!1,this.employeeCheckBoxClicked=!1,this.error=null,this.UserAttributes={FirstName:"",LastName:"",email:"",school:"",gpa:"",year:"",Password:"",province:"",city:"",events:[],experience:[],skills:[],role:"user"},sessionStorage.clear(),this.users="",this.currentUser=[],this.inputtedPassword=null,this.employmentButton=!1,this.validCrendentials=!1,this.pageHeight=0,this.addEventListener("custom-string-event",this.handleChangedValue)}connectedCallback(){super.connectedCallback(),this.pageHeight=document.documentElement.scrollHeight}handleChangedValue(e){switch(e.stopPropagation(),e.detail.type){case"Email":this.userEmailLogin(e.detail.value,null);break;case"Password":this.inputtedPassword=e.detail.value,this.UserAttributes.Password=e.detail.value;break;case"Confirm Password":if(e.detail.value!==this.UserAttributes.Password)return void(this.error="Passwords do not match");this.error=null;break;case"Age":this.validateAge(e.detail.value,e.detail.type);break;case"email":this.validateEmail(e.detail.value,e.detail.type);break;case"year":this.validateYearsCompleted(e.detail.value,e.detail.type);break;case"Phone Number":this.validatePhoneNumber(e.detail.value,e.detail.type);break;case"gpa":this.validateGPA(e.detail.value,e.detail.type);break;default:return void this.validateString(e.detail.value,e.detail.type)}}studentcheckBox(e){this.studentCheckBoxClicked=!0,this.error=null,this.currentUser=null,this.inputtedPassword=null}handleCheckboxChange(e){this.privacyCheckBoxClicked=!this.privacyCheckBoxClicked}studentuncheckBox(e){this.studentCheckBoxClicked=!1,this.error=null,this.currentUser=null,this.inputtedPassword=null}areAllFieldsFilled(e){for(const t in e)if(e.hasOwnProperty(t)){const i=e[t];if(Array.isArray(i))continue;if("string"==typeof i&&""===i.trim())return!1}return!0}convertValuesToLowerCaseJson(e){for(let t=0;t<e.length;t++){const i=e[t];for(const e in i)i.hasOwnProperty(e)&&"string"==typeof i[e]&&(i[e]=i[e].toLowerCase())}return e}convertAllCharsToLowerCase(e){if("string"==typeof e)return e.toLowerCase()}routeToHome(e){this.areAllFieldsFilled(this.UserAttributes)?(this.error=null,this.UserAttributes.Name=this.UserAttributes.FirstName+" "+this.UserAttributes.LastName,this.UserAttributes.aboutMe="",console.log(this.UserAttributes),this.addUser(this.UserAttributes)):this.error="Invalid Sign up credentials"}routeToEnterprise(e){i.go("/enterpriseLoginPage")}memberLogin(e){this.currentUser?this.inputtedPassword?this.currentUser.Password!==this.inputtedPassword?this.error="Incorrect password or email":(sessionStorage.setItem("email",this.currentUser.email),sessionStorage.setItem("role","user"),i.go("/home")):this.error="Please Enter Password":this.error="Please Enter valid Email Address"}validateEmail(e,t){if(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(e)){if(!t)return!0;this.error=null,this.UserAttributes[t]=this.convertAllCharsToLowerCase(e)}else{if(!t)return!1;this.error="Invalid Email"}}userEmailLogin(e,t){fetch(`${r}/api?username=${e}`).then((e=>e.json())).then((t=>{this.currentUser.Password=t.Password,this.currentUser.Name=t.Name,this.currentUser.email=e})).catch((e=>{this.error="User Not Found"})),this.validateEmail(e,t)?this.currentUser.email=e:this.error="Invalid Email"}userEmailPassword(e){this.currentUser||(this.error="Please enter an email address")}validateAge(e,t){e>=15&&e<=100?(this.error=null,this.UserAttributes[t]=String(e)):this.error="Please Enter a Valid Age"}validateGPA(e,t){e>=1.5&&e<=4.3?(this.error=null,this.UserAttributes[t]=String(e)):this.error="Please Enter a Valid Age"}validateString(e,t){/^[a-zA-Z \p{P}]*$/u.test(e)?(this.error=null,this.UserAttributes[t]=e):this.error="Invalid Input"}validateYearsCompleted(e,t){e>=0&&e<=4?(this.error=null,this.UserAttributes[t]=String(e)):this.error="Invalid Input"}validatePhoneNumber(e,t){/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/.test(e)?(this.error=null,this.UserAttributes[t]=String(e)):this.error="Invalid Input"}addUser(e){fetch(`${r}/api/users`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(e)}).then((e=>e.json())).then((e=>{"Account exists under this email"===e.message?this.error="Account exists under this email":(sessionStorage.setItem("email",this.UserAttributes.email),sessionStorage.setItem("role","user"),i.go("/home"))})).catch((e=>{console.error("Error adding user:",e)}))}routeToPrivacy(e){i.go("/privacy")}});
