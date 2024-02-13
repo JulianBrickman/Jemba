@@ -1,4 +1,4 @@
-import{x as t,s as e}from"./navbar-ac35cdda.js";import"./eventCard-9e49002b.js";import"./input-string-402e158f.js";import{a as o}from"./config-f8454f4c.js";import"./router-c2e88fcf.js";const r=e=>t`
+import{x as t,s as e}from"./navbar-5d6428c0.js";import"./eventCard-037d4348.js";import"./input-string-4061eec9.js";import{a as o}from"./config-1948f1ba.js";import"./router-97df8b65.js";const r=e=>t`
     <style>
       .event-section {
         background-color: white; /* Set the background color to white */
